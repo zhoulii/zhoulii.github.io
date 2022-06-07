@@ -488,7 +488,7 @@ codeblock:
 
 ## 20.去除顶部黑线
 
-打开 themes\next\layout\\\_layout.swig，注释掉如下代码：
+打开 `themes/next/layout/_layout.swig`，注释掉如下代码：
 
 ```html
 <!-- 
