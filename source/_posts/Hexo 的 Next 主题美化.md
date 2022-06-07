@@ -520,7 +520,7 @@ menu:
 
 ```yaml
 ---
-title: about
+title: 关于
 date: 2022-06-07 14:48:56
 ---
 ```
