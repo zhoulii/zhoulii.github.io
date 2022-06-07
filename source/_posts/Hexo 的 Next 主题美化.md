@@ -283,12 +283,9 @@ reading_progress:
 
 ## 13.启用本地搜索
 
-打开博客根目录下的 .travis.yml，在 script 节点上方添加如下配置：
+在 `.github/workflows/pages.yml` 中添加如下配置（需要注意添加的位置）：
 
-```yaml
-install:
-  - npm install hexo-generator-searchdb --save
-```
+![](https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/install-hexo-generator-searchdb.png)
 
 编辑博客根目录下的 _config.yml 文件，在底部添加如下配置：
 
