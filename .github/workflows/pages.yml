@@ -13,7 +13,9 @@ jobs:
       - name: Use Node.js 16.x  
         uses: actions/setup-node@v2  
         with:  
-          node-version: '16'  
+          node-version: '16'
+      - name: Install hexo-generator-searchdb  
+        run: npm install hexo-generator-searchdb --save   
       - name: Cache NPM dependencies  
         uses: actions/cache@v2  
         with:  
@@ -25,8 +27,6 @@ jobs:
         run: npm install  
       - name: Build  
         run: npm run build
-      - name: Install hexo-generator-searchdb  
-        run: npm install hexo-generator-searchdb --save 
       - name: Deploy  
         uses: peaceiris/actions-gh-pages@v3  
         with:  
