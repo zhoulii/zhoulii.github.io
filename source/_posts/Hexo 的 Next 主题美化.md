@@ -28,12 +28,12 @@ categories:
 scheme: Gemini
 ```
 
-## 03.设置 NexT 主题为中文
+## 03.设置 Hexo 使用中文
 
-编辑 next 主题目录下的 _config.yml 文件，修改 language 项，细节如下。
+编辑博客根目录下的 _config.yml 文件，修改 language 项，细节如下。
 
 ```yaml
-language: zh-cn
+language: zh-CN
 ```
 
 ## 04.设置 NexT 主题头像
@@ -496,7 +496,32 @@ codeblock:
 -->
 ```
 
-## 21.参考资源
+## 21.启用关于页
+
+打开 `themes/next/_config.yml`，启用关于页：
+
+```yaml
+menu:
+  home: / || home
+  about: /about/ || user
+  tags: /tags/ || tags
+  categories: /categories/ || th
+  archives: /archives/ || archive
+  #schedule: /schedule/ || calendar
+  #sitemap: /sitemap.xml || sitemap
+  #commonweal: /404/ || heartbeat
+```
+
+在博客根目录的 source 文件夹下创建一个名为 about 的文件夹，在 about 文件夹下创建一个 index.md 文件，文件头如代码块所示：
+
+```yaml
+---
+title: about
+date: 2022-06-07 14:48:56
+---
+```
+
+## 22.参考资源
 
 - [主题官网-新](https://theme-next.org/)
 - [主题官网-旧](http://theme-next.iissnan.com/)
