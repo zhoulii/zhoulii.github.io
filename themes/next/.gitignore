@@ -19,3 +19,4 @@ source/lib/font-awesome/scss/
 !source/lib/velocity/
 
 !source/lib/three/
+!source/lib/canvas-nest/

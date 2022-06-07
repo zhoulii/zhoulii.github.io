@@ -859,6 +859,14 @@ three:
   canvas_lines: false
   canvas_sphere: false
 
+canvas_nest:
+  enable: true
+  onmobile: true # Display on mobile or not
+  color: "0,0,255" # RGB values, use `,` to separate
+  opacity: 0.5 # The opacity of line: 0~1
+  zIndex: -1 # z-index property of the background
+  count: 99 # The number of lines
+
 # Canvas-ribbon
 # Dependencies: https://github.com/theme-next/theme-next-canvas-ribbon
 # For more information: https://github.com/zproo/canvas-ribbon
