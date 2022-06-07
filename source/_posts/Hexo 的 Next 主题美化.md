@@ -527,7 +527,7 @@ date: 2022-06-07 14:48:56
 
 ## 22.设置看板娘
 
-首先，拉取 `live2d-widget` 项目到 `themes/next/source` 目录下：
+首先，拉取 `live2d-widget` 项目到 `themes/next/source` 目录下（记得删除 `.git` 文件夹）：
 
 ```shell
 git clone https://github.com/stevenjoezhang/live2d-widget.git source/live2d-widget
@@ -556,7 +556,47 @@ live2d:
   enable: true
 ```
 
-## 23.参考资源
+## 23.设置标签云
+
+在 `.github/workflows/pages.yml` 中添加如下配置（需要注意添加的位置）：
+
+![](https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/install-hexo-tag-cloud.png)
+
+打开 `next/layout/_macro/sidebar.swig`，添加如下代码：
+
+```html
+{% if site.tags.length > 1 %}
+  <script type="text/javascript" charset="utf-8" src="{{ url_for('/js/tagcloud.js') }}"></script>
+  <script type="text/javascript" charset="utf-8" src="{{ url_for('/js/tagcanvas.js') }}"></script>
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div id="myCanvasContainer" class="widget tagcloud">
+      <canvas width="250" height="250" id="resCanvas" style="width:100%">
+        {{ list_tags() }}
+      </canvas>
+    </div>
+  </div>
+{% endif %}
+```
+
+添加位置如下图所示：
+
+![](https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/hexo-tag-cloud-in-sidebar-swig.png)
+
+打开博客根目录下的 `_config.yml` 文件，添加如下设置：
+
+```yaml
+# hexo-tag-cloud
+tag_cloud:
+    textFont: 'Trebuchet MS, Helvetica'
+    textColor: '#333'
+    textHeight: 25
+    outlineColor: '#E2E1D1'
+    maxSpeed: 0.1 # range from [0.01 ~ 1]
+    pauseOnSelected: false # true means pause the cloud tag movement when highlight a tag
+```
+
+## 24.参考资源
 
 - [主题官网-新](https://theme-next.org/)
 - [主题官网-旧](http://theme-next.iissnan.com/)
@@ -566,4 +606,5 @@ live2d:
 - [Next主题中添加超级好玩的看板娘（CDN方式）](https://blog.51cto.com/u_13640625/3032364)
 - [Hexo博客+Next主题深度优化与定制](https://www.ngui.cc/51cto/show-540008.html)
 - [stevenjoezhang/live2d-widget: 把萌萌哒的看板娘抱回家 (ノ≧∇≦)ノ](https://github.com/stevenjoezhang/live2d-widget)
-- 
+- [Hexo博客建立标签云及效果展示](https://cloud.tencent.com/developer/article/1934183)
+- [D0n9X1n/hexo-tag-cloud: Yet, just another tag cloud plugin for hexo](https://github.com/D0n9X1n/hexo-tag-cloud)

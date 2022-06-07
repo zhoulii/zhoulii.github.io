@@ -16,6 +16,8 @@ jobs:
           node-version: '16'
       - name: Install hexo-generator-searchdb  
         run: npm install hexo-generator-searchdb --save   
+      - name: Install hexo-tag-cloud  
+        run: npm install hexo-tag-cloud --save
       - name: Cache NPM dependencies  
         uses: actions/cache@v2  
         with:  
