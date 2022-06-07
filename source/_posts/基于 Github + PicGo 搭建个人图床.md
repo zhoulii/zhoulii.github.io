@@ -7,6 +7,8 @@ categories:
   - other
 ---
 
+<!-- more -->
+
 ## 01.生成 Github 私人令牌
 
 通过[链接](https://github.com/settings/tokens)进入 `Github` 的 `tokens` 页面，点击页面右上方的 `Generate new token` 按钮创建一个新的 `token`，记下这个 `token`，后面会使用到。
