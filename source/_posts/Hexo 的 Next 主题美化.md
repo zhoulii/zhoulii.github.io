@@ -50,7 +50,7 @@ avatar:
   rotated: true
 ```
 
-## 05.更改博客标题、作者名
+## 05.设置博客标题、作者信息
 
 编辑博客根目录下的 _config.yml 文件，具体设置如下。
 
@@ -60,13 +60,13 @@ subtitle: '坐标杭州，卖马为生' #子标题
 author: Leo #作者信息
 ```
 
-## 06.添加动态背景
+## 06.设置动态背景
 
 启用 three 背景的方式如下：
 
 ```yaml
 # 1.进入 next 主题目录
-cd blog/themes/next
+cd themes/next
 
 # 2.拉取 three 背景依赖
 git clone https://github.com/theme-next/theme-next-three source/lib/three
