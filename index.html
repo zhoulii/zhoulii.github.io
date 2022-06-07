@@ -78,7 +78,7 @@
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
-    <div class="headband"></div>
+    <!-- <div class="headband"></div> -->
 
     <header class="header" itemscope itemtype="http://schema.org/WPHeader">
       <div class="header-inner"><div class="site-brand-container">
@@ -363,7 +363,7 @@
 <h2 id="19-隐藏文章底部-标签"><a href="#19-隐藏文章底部-标签" class="headerlink" title="19.隐藏文章底部#标签"></a>19.隐藏文章底部#标签</h2><p>打开 themes\next\layout_macro\post.swig，注释掉如下内容：</p>
 <figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;!--</span><br><span class="line">  &#123;%- if post<span class="selector-class">.tags</span> and post<span class="selector-class">.tags</span><span class="selector-class">.length</span> %&#125;</span><br><span class="line">    &#123;%- if theme<span class="selector-class">.tag_icon</span> %&#125;</span><br><span class="line">      &#123;%- set tag_indicate = &#x27;&lt;<span class="selector-tag">i</span> class=&quot;fa fa-tag&quot;&gt;&lt;/<span class="selector-tag">i</span>&gt;&#x27; %&#125;</span><br><span class="line">    &#123;% else %&#125;</span><br><span class="line">      &#123;%- set tag_indicate = &#x27;#&#x27; %&#125;</span><br><span class="line">    &#123;%- endif %&#125;</span><br><span class="line">    &lt;<span class="selector-tag">div</span> class=&quot;post-tags&quot;&gt;</span><br><span class="line">      &#123;%- for tag in post<span class="selector-class">.tags</span><span class="selector-class">.toArray</span>() %&#125;</span><br><span class="line">        &lt;<span class="selector-tag">a</span> href=&quot;&#123;&#123; url_for(tag<span class="selector-class">.path</span>) &#125;&#125;&quot; rel=&quot;tag&quot;&gt;&#123;&#123; tag_indicate &#125;&#125; &#123;&#123; tag<span class="selector-class">.name</span> &#125;&#125;&lt;/<span class="selector-tag">a</span>&gt;</span><br><span class="line">      &#123;%- endfor %&#125;</span><br><span class="line">    &lt;/<span class="selector-tag">div</span>&gt;</span><br><span class="line">  &#123;%- endif %&#125;</span><br><span class="line">--&gt;</span><br></pre></td></tr></table></figure>
 
-<h2 id="20-去除顶部黑线"><a href="#20-去除顶部黑线" class="headerlink" title="20.去除顶部黑线"></a>20.去除顶部黑线</h2><p>打开 themes\next\layout\_layout.swig，注释掉如下代码：</p>
+<h2 id="20-去除顶部黑线"><a href="#20-去除顶部黑线" class="headerlink" title="20.去除顶部黑线"></a>20.去除顶部黑线</h2><p>打开 <code>themes/next/layout/_layout.swig</code>，注释掉如下代码：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">&lt;div class=&quot;headband&quot;&gt;&lt;/div&gt; </span></span><br><span class="line"><span class="comment">--&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="21-参考资源"><a href="#21-参考资源" class="headerlink" title="21.参考资源"></a>21.参考资源</h2><ul>
