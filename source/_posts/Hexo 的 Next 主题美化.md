@@ -197,7 +197,7 @@ toc:
 powered: false
 ```
 
-打开 themes/next/layout\_partials/footer.swig，注释掉如下内容：
+打开 `themes/next/layout/_partials/footer.swig`，注释掉如下内容：
 
 ```html
 <!--
