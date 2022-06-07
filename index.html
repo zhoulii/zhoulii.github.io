@@ -132,11 +132,6 @@
     <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
-        <li class="menu-item menu-item-schedule">
-
-    <a href="/schedule/" rel="section"><i class="fa fa-fw fa-calendar"></i>日程表</a>
-
-  </li>
         <li class="menu-item menu-item-about">
 
     <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
@@ -250,8 +245,8 @@
 <h2 id="02-设置-NexT-主题样式"><a href="#02-设置-NexT-主题样式" class="headerlink" title="02.设置 NexT 主题样式"></a>02.设置 NexT 主题样式</h2><p>编辑 next 主题目录下的 _config.yml 文件，打开相应 schema 的注释，细节如下。</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"><span class="comment"># Scheme Settings</span></span><br><span class="line"><span class="comment"># ---------------------------------------------------------------</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Schemes</span></span><br><span class="line"><span class="comment">#scheme: Muse</span></span><br><span class="line"><span class="comment">#scheme: Mist</span></span><br><span class="line"><span class="comment">#scheme: Pisces</span></span><br><span class="line"><span class="attr">scheme:</span> <span class="string">Gemini</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="03-设置-NexT-主题为中文"><a href="#03-设置-NexT-主题为中文" class="headerlink" title="03.设置 NexT 主题为中文"></a>03.设置 NexT 主题为中文</h2><p>编辑 next 主题目录下的 _config.yml 文件，修改 language 项，细节如下。</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">language:</span> <span class="string">zh-cn</span></span><br></pre></td></tr></table></figure>
+<h2 id="03-设置-Hexo-使用中文"><a href="#03-设置-Hexo-使用中文" class="headerlink" title="03.设置 Hexo 使用中文"></a>03.设置 Hexo 使用中文</h2><p>编辑博客根目录下的 _config.yml 文件，修改 language 项，细节如下。</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">language:</span> <span class="string">zh-CN</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="04-设置-NexT-主题头像"><a href="#04-设置-NexT-主题头像" class="headerlink" title="04.设置 NexT 主题头像"></a>04.设置 NexT 主题头像</h2><p>编辑 next 主题目录下的 _config.yml 文件，具体设置如下（<code>images</code> 位于 <code>themes/next/source</code> 下）。</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">avatar:</span></span><br><span class="line">  <span class="comment"># 头像图片</span></span><br><span class="line">  <span class="attr">url:</span> <span class="string">/images/gakki.png</span></span><br><span class="line">  <span class="comment"># 头像为圆形</span></span><br><span class="line">  <span class="attr">rounded:</span> <span class="literal">true</span></span><br><span class="line">  <span class="comment"># 鼠标移动到头像时，头像旋转</span></span><br><span class="line">  <span class="attr">rotated:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
@@ -366,7 +361,13 @@
 <h2 id="20-去除顶部黑线"><a href="#20-去除顶部黑线" class="headerlink" title="20.去除顶部黑线"></a>20.去除顶部黑线</h2><p>打开 <code>themes/next/layout/_layout.swig</code>，注释掉如下代码：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!-- </span></span><br><span class="line"><span class="comment">&lt;div class=&quot;headband&quot;&gt;&lt;/div&gt; </span></span><br><span class="line"><span class="comment">--&gt;</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="21-参考资源"><a href="#21-参考资源" class="headerlink" title="21.参考资源"></a>21.参考资源</h2><ul>
+<h2 id="21-启用关于页"><a href="#21-启用关于页" class="headerlink" title="21.启用关于页"></a>21.启用关于页</h2><p>打开 <code>themes/next/_config.yml</code>，启用关于页：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">menu:</span></span><br><span class="line">  <span class="attr">home:</span> <span class="string">/</span> <span class="string">||</span> <span class="string">home</span></span><br><span class="line">  <span class="attr">about:</span> <span class="string">/about/</span> <span class="string">||</span> <span class="string">user</span></span><br><span class="line">  <span class="attr">tags:</span> <span class="string">/tags/</span> <span class="string">||</span> <span class="string">tags</span></span><br><span class="line">  <span class="attr">categories:</span> <span class="string">/categories/</span> <span class="string">||</span> <span class="string">th</span></span><br><span class="line">  <span class="attr">archives:</span> <span class="string">/archives/</span> <span class="string">||</span> <span class="string">archive</span></span><br><span class="line">  <span class="comment">#schedule: /schedule/ || calendar</span></span><br><span class="line">  <span class="comment">#sitemap: /sitemap.xml || sitemap</span></span><br><span class="line">  <span class="comment">#commonweal: /404/ || heartbeat</span></span><br></pre></td></tr></table></figure>
+
+<p>在博客根目录的 source 文件夹下创建一个名为 about 的文件夹，在 about 文件夹下创建一个 index.md 文件，文件头如代码块所示：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">about</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2022-06-07 14:48:56</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="22-参考资源"><a href="#22-参考资源" class="headerlink" title="22.参考资源"></a>22.参考资源</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://theme-next.org/">主题官网-新</a></li>
 <li><a target="_blank" rel="noopener" href="http://theme-next.iissnan.com/">主题官网-旧</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/av17653359">使用Hexo博客搭建的个人博客，使用Next主题来进行优化改造</a></li>
