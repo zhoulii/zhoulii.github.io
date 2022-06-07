@@ -7,8 +7,6 @@ categories:
   - other
 ---
 
-<!-- more -->
-
 ## 01.初始化仓库
 
 ```shell

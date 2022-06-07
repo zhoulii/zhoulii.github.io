@@ -1,22 +1,16 @@
 ---
-title: Hexo 的 NexT 主题美化
-date: 2020-01-28 10:20:20
-updated: 2020-01-28 23:16:16
+title: Hexo 的 Next 主题美化
+date: 2022-06-06 22:00:00
+updated: 2022-06-06 22:00:00
 tags: ["hexo"]
 categories:
-  - 工具
+  - other
 ---
-
-![](https://gitee.com/totorooo/assets/raw/master/image/beautify_theme_next_cover.png)
-
-<!-- more -->
 
 ## 01.NexT 主题的下载与安装
 
 - 下载 [NexT](https://github.com/theme-next/hexo-theme-next/releases) 主题并将其解压到博客的 themes 目录下，修改名称为 next；
 - 修改博客根目录下的 _config.yml，将 theme 项设置为 next;
-
-> 说明：下述操作均基于 NexT v7.7.0
 
 ## 02.修改主题样式
 
