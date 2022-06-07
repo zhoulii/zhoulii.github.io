@@ -7,7 +7,7 @@ categories:
   - other
 ---
 
-![](https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/birds-banner.png)
+![](https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png)
 
 <!-- more -->
 

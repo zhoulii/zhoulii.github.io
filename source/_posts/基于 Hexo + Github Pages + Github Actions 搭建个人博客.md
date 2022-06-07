@@ -7,6 +7,8 @@ categories:
   - other
 ---
 
+![](https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png)
+
 <!-- more -->
 
 ## 01.初始化仓库

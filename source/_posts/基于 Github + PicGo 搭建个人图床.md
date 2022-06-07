@@ -7,6 +7,8 @@ categories:
   - other
 ---
 
+![](https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png)
+
 <!-- more -->
 
 ## 01.生成 Github 私人令牌
