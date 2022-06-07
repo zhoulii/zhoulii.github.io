@@ -334,7 +334,7 @@ menu:
   #commonweal: /404/ || heartbeat
 ```
 
-在博客根目录的 source 文件夹下创建一个名为 tags 的文件夹，在 tags 文件夹下创建一个 index.md 文件，文件内容如代码块所示，需要注意的是 type 的值必须写 tags，title 是标签页的标题，可以随意起。
+在博客根目录的 source 文件夹下创建一个名为 tags 的文件夹，在 tags 文件夹下创建一个 index.md 文件，文件内容如代码块所示，需要注意的是 type 的值必须写 tags，title 是标签页的标题，可以随意起（建议直接删掉 title，标签页有标题不美观）。
 
 ```
 ---
@@ -384,7 +384,7 @@ menu:
   #commonweal: /404/ || heartbeat
 ```
 
-在博客根目录的 source 文件夹下创建一个名为 categories 的文件夹，在 categories 文件夹下创建一个 index.md 文件，文件内容如代码块所示，需要注意的是 type 的值必须写 categories，title 是分类页的标题，可以随意起。
+在博客根目录的 source 文件夹下创建一个名为 categories 的文件夹，在 categories 文件夹下创建一个 index.md 文件，文件内容如代码块所示，需要注意的是 type 的值必须写 categories，title 是分类页的标题，可以随意起（建议直接删掉 title，分类页有标题不美观）。
 
 ```yaml
 ---
@@ -516,7 +516,7 @@ menu:
   #commonweal: /404/ || heartbeat
 ```
 
-在博客根目录的 source 文件夹下创建一个名为 about 的文件夹，在 about 文件夹下创建一个 index.md 文件，文件头如代码块所示：
+在博客根目录的 source 文件夹下创建一个名为 about 的文件夹，在 about 文件夹下创建一个 index.md 文件，文件头如代码块所示，其中 title 是关于页的标题，可以随意起：
 
 ```yaml
 ---
