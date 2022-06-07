@@ -22,12 +22,12 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta name="description" content="01.初始化仓库12345678npm install hexo-cli -ghexo init zhoulii.github.iocd zhoulii.github.iogit initgit add .git commit -m &quot;initialize zhoulii.github.io&quot;git remote add origin https:&#x2F;&#x2F;github.com&#x2F;zh">
+  <meta name="description" content="01.初始化仓库12345678npm install hexo-cli -ghexo init zhoulii.github.iocd zhoulii.github.iogit initgit add .git commit -m &quot;initialize zhoulii.github.io&quot;git remote add origin https:&#x2F;&#x2F;github.com&#x2F;">
 <meta property="og:type" content="article">
 <meta property="og:title" content="基于 Hexo + Github Pages + Github Actions 搭建个人博客">
 <meta property="og:url" content="http://example.com/2022/06/06/%E5%9F%BA%E4%BA%8E%20Hexo%20+%20Github%20Pages%20+%20Github%20Actions%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/index.html">
 <meta property="og:site_name" content="Leo&#39;s Blog">
-<meta property="og:description" content="01.初始化仓库12345678npm install hexo-cli -ghexo init zhoulii.github.iocd zhoulii.github.iogit initgit add .git commit -m &quot;initialize zhoulii.github.io&quot;git remote add origin https:&#x2F;&#x2F;github.com&#x2F;zh">
+<meta property="og:description" content="01.初始化仓库12345678npm install hexo-cli -ghexo init zhoulii.github.iocd zhoulii.github.iogit initgit add .git commit -m &quot;initialize zhoulii.github.io&quot;git remote add origin https:&#x2F;&#x2F;github.com&#x2F;">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/github-actions-hexo.png">
 <meta property="og:image" content="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/gh-pages-branch.png">
@@ -126,7 +126,7 @@
   <ul id="menu" class="menu">
         <li class="menu-item menu-item-home">
 
-    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>首页</a>
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
 
   </li>
         <li class="menu-item menu-item-tags">
@@ -137,6 +137,11 @@
         <li class="menu-item menu-item-categories">
 
     <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
 
   </li>
         <li class="menu-item menu-item-about">
@@ -245,7 +250,9 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h2 id="01-初始化仓库"><a href="#01-初始化仓库" class="headerlink" title="01.初始化仓库"></a>01.初始化仓库</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">hexo init zhoulii.github.io</span><br><span class="line">cd zhoulii.github.io</span><br><span class="line">git init</span><br><span class="line">git add .</span><br><span class="line">git commit -m &quot;initialize zhoulii.github.io&quot;</span><br><span class="line">git remote add origin https://github.com/zhoulii/zhoulii.github.io.git</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
+        <span id="more"></span>
+
+<h2 id="01-初始化仓库"><a href="#01-初始化仓库" class="headerlink" title="01.初始化仓库"></a>01.初始化仓库</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">hexo init zhoulii.github.io</span><br><span class="line">cd zhoulii.github.io</span><br><span class="line">git init</span><br><span class="line">git add .</span><br><span class="line">git commit -m &quot;initialize zhoulii.github.io&quot;</span><br><span class="line">git remote add origin https://github.com/zhoulii/zhoulii.github.io.git</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
 
 <h2 id="02-配置-Github-Actions"><a href="#02-配置-Github-Actions" class="headerlink" title="02.配置 Github Actions"></a>02.配置 Github Actions</h2><p>在仓库中创建 <code>.github/workflows/pages.yml</code>，具体内容如下：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">name: deploy zhoulii.github.io  </span><br><span class="line">  </span><br><span class="line">on:  </span><br><span class="line">  push:  </span><br><span class="line">    branches:  </span><br><span class="line">      - master</span><br><span class="line">  </span><br><span class="line">jobs:  </span><br><span class="line">  pages:  </span><br><span class="line">    runs-on: ubuntu-latest  </span><br><span class="line">    steps:  </span><br><span class="line">      - uses: actions/checkout@v2  </span><br><span class="line">      - name: Use Node.js 16.x  </span><br><span class="line">        uses: actions/setup-node@v2  </span><br><span class="line">        with:  </span><br><span class="line">          node-version: &#x27;16&#x27;  </span><br><span class="line">      - name: Cache NPM dependencies  </span><br><span class="line">        uses: actions/cache@v2  </span><br><span class="line">        with:  </span><br><span class="line">          path: node_modules  </span><br><span class="line">          key: $&#123;&#123; runner.OS &#125;&#125;-npm-cache  </span><br><span class="line">          restore-keys: |  </span><br><span class="line">            $&#123;&#123; runner.OS &#125;&#125;-npm-cache  </span><br><span class="line">      - name: Install Dependencies  </span><br><span class="line">        run: npm install  </span><br><span class="line">      - name: Build  </span><br><span class="line">        run: npm run build  </span><br><span class="line">      - name: Deploy  </span><br><span class="line">        uses: peaceiris/actions-gh-pages@v3  </span><br><span class="line">        with:  </span><br><span class="line">          github_token: $&#123;&#123; secrets.GITHUB_TOKEN &#125;&#125;  </span><br><span class="line">          publish_dir: ./public</span><br></pre></td></tr></table></figure>
@@ -363,7 +370,8 @@
 <div class="site-state-wrap motion-element">
   <nav class="site-state">
       <div class="site-state-item site-state-posts">
-          <a href="/archives">
+          <a href="/archives/">
+        
           <span class="site-state-item-count">3</span>
           <span class="site-state-item-name">日志</span>
         </a>
