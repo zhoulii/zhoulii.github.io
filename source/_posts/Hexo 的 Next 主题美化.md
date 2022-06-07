@@ -102,7 +102,7 @@ canvas_nest:
 
 ```yaml
 # 1.进入 next 主题目录
-cd blog/themes/next
+cd themes/next
 
 # 2.拉取 canvas-ribbon 背景依赖
 git clone https://github.com/theme-next/theme-next-canvas-ribbon source/lib/canvas-ribbon
