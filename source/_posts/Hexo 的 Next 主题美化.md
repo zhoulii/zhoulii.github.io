@@ -60,7 +60,7 @@ subtitle: '坐标杭州，卖马为生' #子标题
 author: Leo #作者信息
 ```
 
-## 06.设置动态背景
+## 06.设置博客动态背景
 
 启用 three 背景的方式如下：
 
@@ -118,12 +118,14 @@ canvas_ribbon:
 > 提示1：要删除 clone 下来的依赖包中的 .git 文件夹
 >
 > 提示2：如果下载的依赖无法提交到 github，则可能是由 next 目录下的 .gitignore 引起的
+>
+> 提示3：我使用的动态背景是 canvas-nest
 
-## 07.设置加载效果
+## 07.设置页面加载效果
 
 ```yaml
 # 1.进入 next 主题目录
-cd blog/themes/next
+cd themes/next
 
 # 2.拉取 three 背景依赖
 git clone https://github.com/theme-next/theme-next-pace source/lib/pace
@@ -138,6 +140,10 @@ pace:
   # loading-bar | mac-osx | material | minimal
   theme: center-atom
 ```
+
+> 提示1：要删除 clone 下来的依赖包中的 .git 文件夹
+>
+> 提示2：如果下载的依赖无法提交到 github，则可能是由 next 目录下的 .gitignore 引起的
 
 ## 08.设置点击特效
 
