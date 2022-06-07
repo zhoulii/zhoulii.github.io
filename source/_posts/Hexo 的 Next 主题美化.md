@@ -207,13 +207,13 @@ powered: false
 -->
 ```
 
-## 11.设置博客透明度
+## 11.设置博客页面透明度
 
 打开 themes\next\source\css\\\_schemes\Pisces\\_layout.styl
 
 ```css
 .header-inner {
-  background: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.3);
   ......
 }
 ```
@@ -222,18 +222,23 @@ powered: false
 
 ```css
 .content-wrap {
-  background: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.3);
   ......
 }
 
 .post-block {
-  background: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.3);
+  ......
+}
+
+.comments {
+  background: rgba(255,255,255,0.3);
   ......
 }
 
 .pagination {
   ......
-  background: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.3);
   ......
 }
 ```
@@ -242,12 +247,12 @@ powered: false
 
 ```css
 .sidebar {
-  background: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.3);
   ......
 }
 
 .sidebar-inner {
-  background: rgba(255,255,255,0.5);
+  background: rgba(255,255,255,0.3);
   ......
 }
 ```
