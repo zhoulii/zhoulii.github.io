@@ -76,9 +76,8 @@
 <blockquote>
 <p>提示：没必要都开启，我选择在 back2top 按钮上显示阅读百分比</p>
 </blockquote>
-<h2 id="13-启用本地搜索"><a href="#13-启用本地搜索" class="headerlink" title="13.启用本地搜索"></a>13.启用本地搜索</h2><p>打开博客根目录下的 .travis.yml，在 script 节点上方添加如下配置：</p>
-<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">install:</span></span><br><span class="line">  <span class="bullet">-</span> <span class="string">npm</span> <span class="string">install</span> <span class="string">hexo-generator-searchdb</span> <span class="string">--save</span></span><br></pre></td></tr></table></figure>
-
+<h2 id="13-启用本地搜索"><a href="#13-启用本地搜索" class="headerlink" title="13.启用本地搜索"></a>13.启用本地搜索</h2><p>在 <code>.github/workflows/pages.yml</code> 中添加如下配置（需要注意添加的位置）：</p>
+<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/install-hexo-generator-searchdb.png"></p>
 <p>编辑博客根目录下的 _config.yml 文件，在底部添加如下配置：</p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="comment"># Local Searh</span></span><br><span class="line"><span class="attr">search:</span></span><br><span class="line">  <span class="attr">path:</span> <span class="string">search.xml</span></span><br><span class="line">  <span class="attr">field:</span> <span class="string">post</span></span><br><span class="line">  <span class="attr">content:</span> <span class="literal">true</span></span><br><span class="line">  <span class="attr">format:</span> <span class="string">html</span></span><br></pre></td></tr></table></figure>
 
