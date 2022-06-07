@@ -216,11 +216,6 @@ powered: false
   background: rgba(255,255,255,0.5);
   ......
 }
-
-.sidebar {
-  background: rgba(255,255,255,0.5);
-  ......
-}
 ```
 
 打开 themes\next\source\css\\_schemes\Gemini\index.styl
@@ -246,6 +241,11 @@ powered: false
 打开 themes\next\source\css\\\_schemes\Pisces\\_sidebar.styl
 
 ```css
+.sidebar {
+  background: rgba(255,255,255,0.5);
+  ......
+}
+
 .sidebar-inner {
   background: rgba(255,255,255,0.5);
   ......
