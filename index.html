@@ -250,7 +250,7 @@
 <h2 id="10-隐藏页面底部文字"><a href="#10-隐藏页面底部文字" class="headerlink" title="10.隐藏页面底部文字"></a>10.隐藏页面底部文字</h2><p>打开 themes&#x2F;next&#x2F;_config.yml，具体配置如下：</p>
 <figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Powered by Hexo &amp; NexT</span></span><br><span class="line"><span class="attr">powered:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure>
 
-<p>打开 themes&#x2F;next&#x2F;layout_partials&#x2F;footer.swig，注释掉如下内容：</p>
+<p>打开 <code>themes/next/layout/_partials/footer.swig</code>，注释掉如下内容：</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">&lt;!--</span></span><br><span class="line"><span class="comment">&lt;div class=&quot;copyright&quot;&gt;</span></span><br><span class="line"><span class="comment">  ......</span></span><br><span class="line"><span class="comment">&lt;/div&gt;</span></span><br><span class="line"><span class="comment">--&gt;</span></span><br></pre></td></tr></table></figure>
 
 <h2 id="11-设置博客透明度"><a href="#11-设置博客透明度" class="headerlink" title="11.设置博客透明度"></a>11.设置博客透明度</h2><p>打开 themes\next\source\css\_schemes\Pisces\_layout.styl</p>
@@ -598,6 +598,7 @@
 
         
 
+<!--
 <div class="copyright">
   
   &copy; 
@@ -607,6 +608,7 @@
   </span>
   <span class="author" itemprop="copyrightHolder">Leo</span>
 </div>
+-->
 
         
 
