@@ -1,12 +1,15 @@
 ---
 title: Hexo 的 Next 主题美化
-description: Hexo 的 Next 主题美化
 date: 2022-06-06 22:00:00
 updated: 2022-06-06 22:00:00
 tags: ["hexo"]
 categories:
   - other
 ---
+
+![](https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/birds-banner.png)
+
+<!-- more -->
 
 ## 01.NexT 主题的下载与安装
 
