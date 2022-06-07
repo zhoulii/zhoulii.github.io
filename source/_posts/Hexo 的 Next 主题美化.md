@@ -1,7 +1,7 @@
 ---
 title: Hexo 的 Next 主题美化
 date: 2022-06-06 22:00:00
-updated: 2022-06-07 22:00:00
+updated: 2022-06-06 22:00:00
 tags: ["hexo"]
 categories:
   - other
