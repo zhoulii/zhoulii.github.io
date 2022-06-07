@@ -135,12 +135,28 @@
 <p>在博客根目录的 source 文件夹下创建一个名为 about 的文件夹，在 about 文件夹下创建一个 index.md 文件，文件头如代码块所示：</p>
 <figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">about</span></span><br><span class="line"><span class="attr">date:</span> <span class="number">2022-06-07 14:48:56</span></span><br><span class="line"><span class="meta">---</span></span><br></pre></td></tr></table></figure>
 
-<h2 id="22-参考资源"><a href="#22-参考资源" class="headerlink" title="22.参考资源"></a>22.参考资源</h2><ul>
+<h2 id="22-设置看板娘"><a href="#22-设置看板娘" class="headerlink" title="22.设置看板娘"></a>22.设置看板娘</h2><p>首先，拉取 <code>live2d-widget</code> 项目到 <code>themes/next/source</code> 目录下：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">git clone https://github.com/stevenjoezhang/live2d-widget.git source/live2d-widget</span><br></pre></td></tr></table></figure>
+
+<p>然后，打开<code>live2d-widget</code> 项目中的 <code>autoload.js</code> 文件，修改指定代码：</p>
+<figure class="highlight js"><table><tr><td class="code"><pre><span class="line"><span class="comment">// 修改前</span></span><br><span class="line"><span class="keyword">const</span> live2d_path = <span class="string">&quot;https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/&quot;</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 修改后</span></span><br><span class="line"><span class="keyword">const</span> live2d_path = <span class="string">&quot;/live2d-widget/&quot;</span>;</span><br></pre></td></tr></table></figure>
+
+<p>接着，打开 <code>themes/next/layout/_layout.swig</code> 文件， 在 <code>&lt;/body&gt;</code> 标签上方添加如下代码：</p>
+<figure class="highlight html"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">src</span>=<span class="string">&quot;/live2d-widget/autoload.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p>最后，打开主题配置文件 <code>themes/next/_config.yml</code> ，在其中末尾添加：</p>
+<figure class="highlight yaml"><table><tr><td class="code"><pre><span class="line"><span class="attr">live2d:</span></span><br><span class="line">  <span class="attr">enable:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="23-参考资源"><a href="#23-参考资源" class="headerlink" title="23.参考资源"></a>23.参考资源</h2><ul>
 <li><a href="https://theme-next.org/">主题官网-新</a></li>
 <li><a href="http://theme-next.iissnan.com/">主题官网-旧</a></li>
 <li><a href="https://www.bilibili.com/video/av17653359">使用Hexo博客搭建的个人博客，使用Next主题来进行优化改造</a></li>
 <li><a href="https://www.jianshu.com/p/9f0e90cc32c2">Hexo-NexT配置超炫网页效果</a></li>
 <li><a href="https://blog.csdn.net/lcyaiym/article/details/76768762?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~default-1-76768762-blog-61414438.pc_relevant_default&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~default-1-76768762-blog-61414438.pc_relevant_default&utm_relevant_index=1">hexo的next创建关于我</a></li>
+<li><a href="https://blog.51cto.com/u_13640625/3032364">Next主题中添加超级好玩的看板娘（CDN方式）</a></li>
+<li><a href="https://www.ngui.cc/51cto/show-540008.html">Hexo博客+Next主题深度优化与定制</a></li>
+<li><a href="https://github.com/stevenjoezhang/live2d-widget">stevenjoezhang&#x2F;live2d-widget: 把萌萌哒的看板娘抱回家 (ノ≧∇≦)ノ</a></li>
+<li></li>
 </ul>
 ]]></content>
       <categories>
