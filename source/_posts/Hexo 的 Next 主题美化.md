@@ -525,10 +525,45 @@ date: 2022-06-07 14:48:56
 ---
 ```
 
-## 22.参考资源
+## 22.设置看板娘
+
+首先，拉取 `live2d-widget` 项目到 `themes/next/source` 目录下：
+
+```shell
+git clone https://github.com/stevenjoezhang/live2d-widget.git source/live2d-widget
+```
+
+然后，打开`live2d-widget` 项目中的 `autoload.js` 文件，修改指定代码：
+
+```js
+// 修改前
+const live2d_path = "https://fastly.jsdelivr.net/gh/stevenjoezhang/live2d-widget@latest/";
+
+// 修改后
+const live2d_path = "/live2d-widget/";
+```
+
+接着，打开 `themes/next/layout/_layout.swig` 文件， 在 `</body>` 标签上方添加如下代码：
+
+```html
+<script src="/live2d-widget/autoload.js"></script>
+```
+
+最后，打开主题配置文件 `themes/next/_config.yml` ，在其中末尾添加：
+
+```yaml
+live2d:
+  enable: true
+```
+
+## 23.参考资源
 
 - [主题官网-新](https://theme-next.org/)
 - [主题官网-旧](http://theme-next.iissnan.com/)
 - [使用Hexo博客搭建的个人博客，使用Next主题来进行优化改造](https://www.bilibili.com/video/av17653359)
 - [Hexo-NexT配置超炫网页效果](https://www.jianshu.com/p/9f0e90cc32c2)
 - [hexo的next创建关于我](https://blog.csdn.net/lcyaiym/article/details/76768762?spm=1001.2101.3001.6661.1&utm_medium=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~default-1-76768762-blog-61414438.pc_relevant_default&depth_1-utm_source=distribute.pc_relevant_t0.none-task-blog-2~default~CTRLIST~default-1-76768762-blog-61414438.pc_relevant_default&utm_relevant_index=1)
+- [Next主题中添加超级好玩的看板娘（CDN方式）](https://blog.51cto.com/u_13640625/3032364)
+- [Hexo博客+Next主题深度优化与定制](https://www.ngui.cc/51cto/show-540008.html)
+- [stevenjoezhang/live2d-widget: 把萌萌哒的看板娘抱回家 (ノ≧∇≦)ノ](https://github.com/stevenjoezhang/live2d-widget)
+- 
