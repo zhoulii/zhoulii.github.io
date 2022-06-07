@@ -193,17 +193,8 @@ toc:
 打开 themes/next/_config.yml，具体配置如下：
 
 ```yaml
-  powered:
-    # Hexo link (Powered by Hexo).
-    enable: false
-    # Version info of Hexo after Hexo link (vX.X.X).
-    version: true
-
-  theme:
-    # Theme & scheme info link (Theme - NexT.scheme).
-    enable: false
-    # Version info of NexT after scheme info (vX.X.X).
-    version: true
+# Powered by Hexo & NexT
+powered: false
 ```
 
 打开 themes/next/layout\_partials/footer.swig，注释掉如下内容：
