@@ -95,7 +95,7 @@ canvas_nest:
   color: "0,0,255" # RGB values, use `,` to separate
   opacity: 0.5 # The opacity of line: 0~1
   zIndex: -1 # z-index property of the background
-  count: 99 # The number of lines
+  count: 150 # The number of lines, default 99
 ```
 
 启用 canvas-ribbon 背景的方式如下：
