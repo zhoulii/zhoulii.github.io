@@ -175,7 +175,7 @@ fireworks: true
 >
 > 提示2：在 _layout.swig 中添加代码时，注意是否需要调整 js 脚本的路径。如果博客的 root 地址是 / 则无需修改，如过博客的 root 地址是 /blog/，则 js 脚本的地址前面就需要加上 /blog 
 
-## 09.取消标题自动编号
+## 09.取消目录中标题自动编号
 
 打开 themes/next/_config.yml，具体配置如下：
 
