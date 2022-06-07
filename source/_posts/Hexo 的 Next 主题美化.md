@@ -257,7 +257,7 @@ powered: false
 }
 ```
 
-## 12.显示阅读进度
+## 12.显示文章阅读进度
 
 打开 themes/next/_config.yml，具体配置如下：
 
