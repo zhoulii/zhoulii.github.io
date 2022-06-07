@@ -12,7 +12,7 @@ categories:
 - 下载 [NexT](https://github.com/theme-next/hexo-theme-next/releases) 主题并将其解压到博客的 themes 目录下，修改名称为 next；
 - 修改博客根目录下的 _config.yml，将 theme 项设置为 next;
 
-## 02.修改 NexT 主题样式
+## 02.设置 NexT 主题样式
 
 编辑 next 主题目录下的 _config.yml 文件，打开相应 schema 的注释，细节如下。
 
@@ -28,17 +28,17 @@ categories:
 scheme: Gemini
 ```
 
-## 03.设置博客主题为中文
+## 03.设置 NexT 主题为中文
 
-编辑博客根目录下的 _config.yml 文件，修改 language 项，细节如下。
+编辑 next 主题目录下的 _config.yml 文件，修改 language 项，细节如下。
 
 ```yaml
-language: zh-CN
+language: zh-cn
 ```
 
-## 04.设置博客头像
+## 04.设置 NexT 主题头像
 
-编辑 next 主题目录下的 _config.yml 文件，具体设置如下。
+编辑 next 主题目录下的 _config.yml 文件，具体设置如下（`images` 位于 `themes/next/source` 下）。
 
 ```yaml
 avatar:
