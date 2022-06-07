@@ -238,7 +238,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/birds-banner.png"></p>
+          <p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2022/06/06/Hexo%20%E7%9A%84%20Next%20%E4%B8%BB%E9%A2%98%E7%BE%8E%E5%8C%96/#more" rel="contents">
@@ -312,15 +312,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <span id="more"></span>
-
-<h2 id="01-生成-Github-私人令牌"><a href="#01-生成-Github-私人令牌" class="headerlink" title="01.生成 Github 私人令牌"></a>01.生成 Github 私人令牌</h2><p>通过<a target="_blank" rel="noopener" href="https://github.com/settings/tokens">链接</a>进入 <code>Github</code> 的 <code>tokens</code> 页面，点击页面右上方的 <code>Generate new token</code> 按钮创建一个新的 <code>token</code>，记下这个 <code>token</code>，后面会使用到。</p>
-<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/github-token.png"></p>
-<h2 id="02-配置-Github-图床"><a href="#02-配置-Github-图床" class="headerlink" title="02.配置 Github 图床"></a>02.配置 Github 图床</h2><p>下载安装 <a target="_blank" rel="noopener" href="https://github.com/Molunerfinn/PicGo/releases">PicGo</a>，配置 Github 图床，配置细节如下：</p>
-<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/pocgo-github.png"></p>
-<h2 id="03-上传图片到-Github-图床"><a href="#03-上传图片到-Github-图床" class="headerlink" title="03.上传图片到 Github 图床"></a>03.上传图片到 Github 图床</h2><p>上传图片后，返回的链接会自动进入剪贴板，可直接粘贴使用。</p>
-<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/pocgo-github-1.png"></p>
-
+          <p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/06/06/%E5%9F%BA%E4%BA%8E%20Github%20+%20PicGo%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -386,31 +386,15 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <span id="more"></span>
-
-<h2 id="01-初始化仓库"><a href="#01-初始化仓库" class="headerlink" title="01.初始化仓库"></a>01.初始化仓库</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">hexo init zhoulii.github.io</span><br><span class="line">cd zhoulii.github.io</span><br><span class="line">git init</span><br><span class="line">git add .</span><br><span class="line">git commit -m &quot;initialize zhoulii.github.io&quot;</span><br><span class="line">git remote add origin https://github.com/zhoulii/zhoulii.github.io.git</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
-
-<h2 id="02-配置-Github-Actions"><a href="#02-配置-Github-Actions" class="headerlink" title="02.配置 Github Actions"></a>02.配置 Github Actions</h2><p>在仓库中创建 <code>.github/workflows/pages.yml</code>，具体内容如下：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">name: deploy zhoulii.github.io  </span><br><span class="line">  </span><br><span class="line">on:  </span><br><span class="line">  push:  </span><br><span class="line">    branches:  </span><br><span class="line">      - master</span><br><span class="line">  </span><br><span class="line">jobs:  </span><br><span class="line">  pages:  </span><br><span class="line">    runs-on: ubuntu-latest  </span><br><span class="line">    steps:  </span><br><span class="line">      - uses: actions/checkout@v2  </span><br><span class="line">      - name: Use Node.js 16.x  </span><br><span class="line">        uses: actions/setup-node@v2  </span><br><span class="line">        with:  </span><br><span class="line">          node-version: &#x27;16&#x27;  </span><br><span class="line">      - name: Cache NPM dependencies  </span><br><span class="line">        uses: actions/cache@v2  </span><br><span class="line">        with:  </span><br><span class="line">          path: node_modules  </span><br><span class="line">          key: $&#123;&#123; runner.OS &#125;&#125;-npm-cache  </span><br><span class="line">          restore-keys: |  </span><br><span class="line">            $&#123;&#123; runner.OS &#125;&#125;-npm-cache  </span><br><span class="line">      - name: Install Dependencies  </span><br><span class="line">        run: npm install  </span><br><span class="line">      - name: Build  </span><br><span class="line">        run: npm run build  </span><br><span class="line">      - name: Deploy  </span><br><span class="line">        uses: peaceiris/actions-gh-pages@v3  </span><br><span class="line">        with:  </span><br><span class="line">          github_token: $&#123;&#123; secrets.GITHUB_TOKEN &#125;&#125;  </span><br><span class="line">          publish_dir: ./public</span><br></pre></td></tr></table></figure>
-<p>需要注意两点：</p>
-<ul>
-<li><code>node</code> 版本需要与本地机器一致（可使用 <code>node --version</code> 查看）</li>
-<li>配置中的变量不需要手动指定</li>
-</ul>
-<p>将 <code>.github/workflows/pages.yml</code> 同步到远程仓库，点击仓库主页的 <code>Actions</code> 标签，可以看到 <code>workflow</code> 的执行情况。</p>
-<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/github-actions-hexo.png"></p>
-<p><code>workflow</code> 执行完成后，仓库会多出一个名为 <code>gh-pages</code> 的分支，<code>Hexo</code> 生成的静态网站文件即在该分支下。</p>
-<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/gh-pages-branch.png"></p>
-<h2 id="03-配置-Github-Pages"><a href="#03-配置-Github-Pages" class="headerlink" title="03.配置 Github Pages"></a>03.配置 Github Pages</h2><p><code>Hexo</code> 生成的静态网站文件在  <code>gh-pages</code>  分支下，接下来配置 <code>Github Pages</code> 从 <code>gh-pages</code>  分支构建站点：</p>
-<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/github-pages-hexo.png"></p>
-<p>配置完成后，稍等个一两分钟，网站就可以访问了，网站首页如下：</p>
-<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/hello-world-hexo.png"></p>
-<h2 id="04-参考资料"><a href="#04-参考资料" class="headerlink" title="04.参考资料"></a>04.参考资料</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://hexo.io/docs/github-pages.html">GitHub Pages | Hexo</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/peaceiris/actions-gh-pages">peaceiris&#x2F;actions-gh-pages: GitHub Actions for GitHub Pages</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/eadeddb792c5">博客之旅：从 Jekyll 到 Hexo</a></li>
-</ul>
-
+          <p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/06/06/%E5%9F%BA%E4%BA%8E%20Hexo%20+%20Github%20Pages%20+%20Github%20Actions%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/#more" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 

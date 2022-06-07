@@ -3,7 +3,7 @@
   <entry>
     <title>Hexo 的 Next 主题美化</title>
     <url>/2022/06/06/Hexo%20%E7%9A%84%20Next%20%E4%B8%BB%E9%A2%98%E7%BE%8E%E5%8C%96/</url>
-    <content><![CDATA[<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/birds-banner.png"></p>
+    <content><![CDATA[<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
 <span id="more"></span>
 
 <h2 id="01-NexT-主题的下载与安装"><a href="#01-NexT-主题的下载与安装" class="headerlink" title="01.NexT 主题的下载与安装"></a>01.NexT 主题的下载与安装</h2><ul>
@@ -153,7 +153,8 @@
   <entry>
     <title>基于 Github + PicGo 搭建个人图床</title>
     <url>/2022/06/06/%E5%9F%BA%E4%BA%8E%20Github%20+%20PicGo%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/</url>
-    <content><![CDATA[<span id="more"></span>
+    <content><![CDATA[<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
+<span id="more"></span>
 
 <h2 id="01-生成-Github-私人令牌"><a href="#01-生成-Github-私人令牌" class="headerlink" title="01.生成 Github 私人令牌"></a>01.生成 Github 私人令牌</h2><p>通过<a href="https://github.com/settings/tokens">链接</a>进入 <code>Github</code> 的 <code>tokens</code> 页面，点击页面右上方的 <code>Generate new token</code> 按钮创建一个新的 <code>token</code>，记下这个 <code>token</code>，后面会使用到。</p>
 <p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/github-token.png"></p>
@@ -173,7 +174,8 @@
   <entry>
     <title>基于 Hexo + Github Pages + Github Actions 搭建个人博客</title>
     <url>/2022/06/06/%E5%9F%BA%E4%BA%8E%20Hexo%20+%20Github%20Pages%20+%20Github%20Actions%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
-    <content><![CDATA[<span id="more"></span>
+    <content><![CDATA[<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
+<span id="more"></span>
 
 <h2 id="01-初始化仓库"><a href="#01-初始化仓库" class="headerlink" title="01.初始化仓库"></a>01.初始化仓库</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">hexo init zhoulii.github.io</span><br><span class="line">cd zhoulii.github.io</span><br><span class="line">git init</span><br><span class="line">git add .</span><br><span class="line">git commit -m &quot;initialize zhoulii.github.io&quot;</span><br><span class="line">git remote add origin https://github.com/zhoulii/zhoulii.github.io.git</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
 
