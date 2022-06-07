@@ -854,13 +854,13 @@ pace:
 # JavaScript 3D library.
 # Dependencies: https://github.com/theme-next/theme-next-three
 three:
-  enable: true
-  three_waves: true
+  enable: false
+  three_waves: false
   canvas_lines: false
   canvas_sphere: false
 
 canvas_nest:
-  enable: true
+  enable: false
   onmobile: true # Display on mobile or not
   color: "0,0,255" # RGB values, use `,` to separate
   opacity: 0.5 # The opacity of line: 0~1
