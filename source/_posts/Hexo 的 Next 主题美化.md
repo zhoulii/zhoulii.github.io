@@ -262,13 +262,24 @@ powered: false
 打开 themes/next/_config.yml，具体配置如下：
 
 ```yaml
+# 会在 back2top 按钮上显示阅读百分比
 back2top:
   enable: true
   # Back to top in sidebar.
   sidebar: false
   # Scroll percent label in b2t button.
   scrollpercent: true
+
+# 会在页面上方显示一个阅读进度条
+reading_progress:
+  enable: true
+  # Available values: top | bottom
+  position: top
+  color: "#37c6c0"
+  height: 3px
 ```
+
+> 提示：没必要都开启，我选择在 back2top 按钮上显示阅读百分比
 
 ## 13.启用本地搜索
 
