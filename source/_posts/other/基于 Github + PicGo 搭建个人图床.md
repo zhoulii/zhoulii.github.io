@@ -1,8 +1,8 @@
 ---
 title: 基于 Github + PicGo 搭建个人图床
 date: 2022-06-06 22:00:00
-updated: 2022-06-07 22:00:00
-tags: ["picgo","github"]
+updated: 2022-06-08 22:00:00
+tags: ["github"]
 categories:
   - other
 ---
