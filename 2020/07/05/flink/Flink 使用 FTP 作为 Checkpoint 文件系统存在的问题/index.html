@@ -254,22 +254,22 @@
         <p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
 <span id="more"></span>
 
-<h2 id="01-背景说明"><a href="#01-背景说明" class="headerlink" title="01.背景说明"></a>01.背景说明</h2><a href="#">Post not found: Flink 使用 FTP 作为 Checkpoint 文件系统</a> 介绍了如何让 `Flink Checkpoint` 后端支持 `FTP`，并实现了此项功能。项目上线后，`FTP` 作为 `Flink Checkpoint` 状态后端可以正常工作，但项目运行一段时间后，偶尔在做 `Checkpoint` 时会出现端口被占用异常，从而出现 `Checkpoint` 失败，作业重启的问题。
+<h2 id="01-背景说明"><a href="#01-背景说明" class="headerlink" title="01.背景说明"></a>01.背景说明</h2><a href="/2020/06/29/flink/Flink%20%E4%BD%BF%E7%94%A8%20FTP%20%E4%BD%9C%E4%B8%BA%20Checkpoint%20%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/" title="Flink 使用 FTP 作为 Checkpoint 文件系统">Flink 使用 FTP 作为 Checkpoint 文件系统</a> 介绍了如何让 Flink Checkpoint 后端支持 FTP，并实现了此项功能。项目上线后，FTP 作为 Flink Checkpoint 状态后端可以正常工作，但项目运行一段时间后，偶尔在做 Checkpoint 时会出现端口被占用异常，从而出现 Checkpoint 失败，作业重启的问题。
 
 <h2 id="02-问题排查"><a href="#02-问题排查" class="headerlink" title="02.问题排查"></a>02.问题排查</h2><p>首先看下异常发生的位置：</p>
 <p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/flink-ftp-checkpoint-failed.png"></p>
 <p>下面是我的排查思路：</p>
 <ul>
-<li>检查机器的端口，发现大量端口处于 <code>time_wait</code> 状态，推测短链接建立太多，机器端口被占用完；</li>
+<li>检查机器的端口，发现大量端口处于 time_wait 状态，推测短链接建立太多，机器端口被占用完；</li>
 <li>排查代码，<code>_serverSocketFactory_.createServerSocket</code> 绑定的端口是 0，意思是由操作系统分配可用端口，无端口可分配也会抛出端口被占用异常，进一步验证上面猜测；</li>
 </ul>
-<p>分析出机器端口被占用完，接下来就是找出 <code>FTPClient</code> 中为什么会有大量端口没被释放的问题了。还是回到 <code>_openDataConnection_</code> 方法，在 <code>FTPClient</code> 与 <code>FTP</code> 进行数据交互时，每个数据交互操作都需要调用这个方法，该方法会返回一个与服务端进行数据传输的 <code>Socket</code>，猜想如果这些 <code>Socket</code> 没被关闭，那么就会不断有端口被占用。而跟踪代码可以发现，<code>FTPClient</code> 在用完这些 <code>Socket</code> 后，都及时调用了其 <code>close</code> 方法去关闭连接，所以上面的猜想又进入了死胡同。</p>
-<p>在网上查阅相关资料，发现了下面一段描述：<code>socket.close()</code> 操作并不能立即释放绑定的端口，而是把端口设置为 <code>TIME_WAIT</code> 状态，过段时间(默认240s)才释放(用 <code>netstat -na</code> 可以看到)，如果建立短连接的操作较为频繁，可能会导致系统端口资源耗尽。所以，最终确定问题还是在 <code>Socket</code> 的关闭上，既然找到了问题所在，那么在不修改 <code>FTPClient</code> 代码的条件下，可采用如下解决方案：</p>
+<p>分析出机器端口被占用完，接下来就是找出 FTPClient 中为什么会有大量端口没被释放的问题了。还是回到 <code>_openDataConnection_</code> 方法，在 FTPClient 与 FTP 进行数据交互时，每个数据交互操作都需要调用这个方法，该方法会返回一个与服务端进行数据传输的 Socket，猜想如果这些 Socket 没被关闭，那么就会不断有端口被占用。而跟踪代码可以发现，FTPClient 在用完这些 Socket 后，都及时调用了其 close 方法去关闭连接，所以上面的猜想又进入了死胡同。</p>
+<p>在网上查阅相关资料，发现了下面一段描述：<code>socket.close()</code> 操作并不能立即释放绑定的端口，而是把端口设置为 TIME_WAIT 状态，过段时间(默认240s)才释放(用 <code>netstat -na</code> 可以看到)，如果建立短连接的操作较为频繁，可能会导致系统端口资源耗尽。所以，最终确定问题还是在 Socket 的关闭上，既然找到了问题所在，那么在不修改 FTPClient 代码的条件下，可采用如下解决方案：</p>
 <ul>
 <li>扩大机器可用的端口范围</li>
 <li>开启端口的复用与快速回收</li>
 </ul>
-<p>运维人员按上述方案对操作系统进行设置之后，<code>Checkpoint</code> 数据到 <code>FTP</code> 时，未再发生端口被占用问题。</p>
+<p>运维人员按上述方案对操作系统进行设置之后，checkpoint 数据到 FTP 时，未再发生端口被占用问题。</p>
 <h2 id="03-参考资料"><a href="#03-参考资料" class="headerlink" title="03.参考资料"></a>03.参考资料</h2><ul>
 <li><a target="_blank" rel="noopener" href="https://bbs.csdn.net/topics/320024769">请教Address already in use: connect问题</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/dasusu/p/10006899.html">记录 FTPClient 超时处理的相关问题</a></li>
