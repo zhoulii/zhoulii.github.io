@@ -1,7 +1,7 @@
 ---
 title: 基于 Hexo + Github Pages + Github Actions 搭建个人博客
 date: 2022-06-06 22:00:00
-updated: 2022-06-06 22:00:00
+updated: 2022-06-07 22:00:00
 tags: ["hexo","github pages","github actions"]
 categories:
   - other
