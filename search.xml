@@ -337,7 +337,6 @@
         <category>other</category>
       </categories>
       <tags>
-        <tag>picgo</tag>
         <tag>github</tag>
       </tags>
   </entry>
@@ -375,8 +374,7 @@
       </categories>
       <tags>
         <tag>hexo</tag>
-        <tag>github pages</tag>
-        <tag>github actions</tag>
+        <tag>github</tag>
       </tags>
   </entry>
 </search>
