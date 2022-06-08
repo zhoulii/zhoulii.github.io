@@ -1,8 +1,151 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Flink 使用 FTP 作为 Checkpoint 文件系统</title>
+    <url>/2020/06/29/flink/Flink%20%E4%BD%BF%E7%94%A8%20FTP%20%E4%BD%9C%E4%B8%BA%20Checkpoint%20%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/</url>
+    <content><![CDATA[<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
+<span id="more"></span>
+
+<h2 id="01-背景说明"><a href="#01-背景说明" class="headerlink" title="01.背景说明"></a>01.背景说明</h2><p><code>Flink Job</code> 在运行失败时，可以从上一个 <code>checkpoint</code> 进行恢复，不过这有一个前提，就是 <code>checkpoint</code> 数据对所有的 <code>Task</code> 来说都是可以访问的。通常，我们会将 <code>checkpoint</code> 目录设置为 <code>HDFS</code>，但在一些轻量级的生产场景中是没有部署 <code>HDFS</code> 的，所以考虑使用 <code>FTP</code> 来保存 <code>checkpoint</code> 数据。</p>
+<h2 id="02-实现思路"><a href="#02-实现思路" class="headerlink" title="02.实现思路"></a>02.实现思路</h2><p><code>Flink</code> 可以使用 <code>HDFS</code> 作为 <code>checkpoint</code> 目录的原因是 <code>Flink</code> 支持 <code>HDFS</code> 文件系统，所以如果 <code>Flink</code> 可以支持 <code>FTP</code> 文件系统，那么我们就可以用 <code>FTP</code> 来存储 <code>checkpoint</code> 数据。查看 <code>hadoop</code> 的 <code>hadoop-common</code> 模块，可以发现 <code>FTP</code> 对应的文件系统实现是 <code>FTPFileSystem</code>，而 <code>Flink</code> 文件系统又是兼容 <code>Hadoop</code> 文件系统的，所以只要引入 <code>hadoop-common</code> 模块便可以让 <code>Flink</code> 支持 <code>FTP</code>，不过，为防止类冲突，最好引入 <code>Flink</code> 提供的 <code>flink-shaded-hadoop</code>。</p>
+<h2 id="03-实现步骤"><a href="#03-实现步骤" class="headerlink" title="03.实现步骤"></a>03.实现步骤</h2><ul>
+<li>将 <code>flink-shaded-hadoop-2-uber-xxx.jar</code> 放到 <code>Flink</code> 的 <code>lib</code> 路径下（必须放到 <code>lib</code> 路径下，打在作业 <code>Jar</code> 中加载不到）；</li>
+<li>重启 <code>Flink Standalone</code> 集群;</li>
+<li>作业代码中将 checkpoint 目录设置为 ftp，设置方式如下：<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">env.setStateBackend(<span class="keyword">new</span> <span class="title class_">RocksDBStateBackend</span>(<span class="string">&quot;ftp://user:password@ip:port/path&quot;</span>).asInstanceOf[StateBackend])</span><br></pre></td></tr></table></figure></li>
+</ul>
+<h2 id="04-问题分析"><a href="#04-问题分析" class="headerlink" title="04.问题分析"></a>04.问题分析</h2><p>提交作业到集群，可以发现 <code>Job</code> 是正常运行的，不过查看 <code>JobManager</code> 的日志可以发现，checkpoint 出错了，错误信息如下：</p>
+<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/ftp-checkpoint-error.png"></p>
+<p>这里给出的错误原因是无法创建 <code>checkpoint</code> 目录，而此时 <code>FTP</code> 服务是正常的，手动创建目录、上传文件都没问题，所以可以排除 <code>FTP</code> 本身的问题。经过代码调试发现，问题是由路径引起的，因为使用 <code>FTPFileSystem</code> 创建目录时，路径必须是 <code>/A/B/C</code> 这样的形式，像 <code>ftp://user:password@ip:port/path</code> 这样的路径是不被 <code>FTPFileSystem</code> 支持的。</p>
+<h2 id="05-自定义-FTPFileSystem"><a href="#05-自定义-FTPFileSystem" class="headerlink" title="05.自定义 FTPFileSystem"></a>05.自定义 FTPFileSystem</h2><p>自定义<code>FTPFileSystem</code> 来支持 <code>ftp://user:password@ip:port/path</code>  格式的路径，实现步骤如下：</p>
+<p><strong>1.创建一个 Maven 项目，pom 写法如下：</strong></p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="comment">&lt;!-- 依赖 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">dependencies</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">dependency</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.flink<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>flink-shaded-hadoop-2-uber<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">version</span>&gt;</span>2.7.5-10.0<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">dependency</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">dependencies</span>&gt;</span></span><br><span class="line"><span class="comment">&lt;!-- 打包插件 --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">build</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">plugins</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">plugin</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">groupId</span>&gt;</span>org.apache.maven.plugins<span class="tag">&lt;/<span class="name">groupId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">artifactId</span>&gt;</span>maven-shade-plugin<span class="tag">&lt;/<span class="name">artifactId</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">version</span>&gt;</span>3.2.4<span class="tag">&lt;/<span class="name">version</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;<span class="name">executions</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;<span class="name">execution</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">phase</span>&gt;</span>package<span class="tag">&lt;/<span class="name">phase</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">goals</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">goal</span>&gt;</span>shade<span class="tag">&lt;/<span class="name">goal</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;/<span class="name">goals</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;<span class="name">configuration</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">artifactSet</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">excludes</span>&gt;</span></span><br><span class="line">								<span class="tag">&lt;<span class="name">exclude</span>&gt;</span>com.google.code.findbugs:jsr305<span class="tag">&lt;/<span class="name">exclude</span>&gt;</span></span><br><span class="line">								<span class="tag">&lt;<span class="name">exclude</span>&gt;</span>org.slf4j:*<span class="tag">&lt;/<span class="name">exclude</span>&gt;</span></span><br><span class="line">								<span class="tag">&lt;<span class="name">exclude</span>&gt;</span>log4j:*<span class="tag">&lt;/<span class="name">exclude</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;/<span class="name">excludes</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;/<span class="name">artifactSet</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;<span class="name">filters</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">filter</span>&gt;</span></span><br><span class="line">							<span class="comment">&lt;!-- Do not copy the signatures in the META-INF folder.</span></span><br><span class="line"><span class="comment">							Otherwise, this might cause SecurityExceptions when using the JAR. --&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">artifact</span>&gt;</span>*:*<span class="tag">&lt;/<span class="name">artifact</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;<span class="name">excludes</span>&gt;</span></span><br><span class="line">								<span class="tag">&lt;<span class="name">exclude</span>&gt;</span>META-INF/*.SF<span class="tag">&lt;/<span class="name">exclude</span>&gt;</span></span><br><span class="line">								<span class="tag">&lt;<span class="name">exclude</span>&gt;</span>META-INF/*.DSA<span class="tag">&lt;/<span class="name">exclude</span>&gt;</span></span><br><span class="line">								<span class="tag">&lt;<span class="name">exclude</span>&gt;</span>META-INF/*.RSA<span class="tag">&lt;/<span class="name">exclude</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;/<span class="name">excludes</span>&gt;</span></span><br><span class="line">							<span class="tag">&lt;/<span class="name">filter</span>&gt;</span></span><br><span class="line">						<span class="tag">&lt;/<span class="name">filters</span>&gt;</span></span><br><span class="line">					<span class="tag">&lt;/<span class="name">configuration</span>&gt;</span></span><br><span class="line">				<span class="tag">&lt;/<span class="name">execution</span>&gt;</span></span><br><span class="line">			<span class="tag">&lt;/<span class="name">executions</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;/<span class="name">plugin</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;/<span class="name">plugins</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">build</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>2.复制 <code>FTPFileSystem</code> 到项目中，并将其重命名为 <code>HFTPFileSystem</code></strong></p>
+<p><strong>3.修改 <code>HFTPFileSystem</code> 中的 <code>makeabsolute</code> 方法，修改后的方法如下：</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">private</span> Path <span class="title function_">makeAbsolute</span><span class="params">(Path workDir, Path path)</span> &#123;</span><br><span class="line">	Path absolute;</span><br><span class="line">	<span class="keyword">if</span>(<span class="string">&quot;hftp&quot;</span>.equals(path.toUri().getScheme()))&#123;</span><br><span class="line">		<span class="keyword">final</span> <span class="type">String</span> <span class="variable">pathStr</span> <span class="operator">=</span> path.toUri().getPath().substring(<span class="number">1</span>);</span><br><span class="line">		absolute = <span class="keyword">new</span> <span class="title class_">Path</span>(workDir, pathStr);</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> (path.isAbsolute()) &#123;</span><br><span class="line">			<span class="keyword">return</span> path;</span><br><span class="line">		&#125;</span><br><span class="line">		absolute = <span class="keyword">new</span> <span class="title class_">Path</span>(workDir, path);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> absolute;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>4.修改 <code>HFTPFileSystem</code> 中的 <code>getSchema</code> 方法，修改后的方法如下：</strong></p>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line"><span class="keyword">public</span> String <span class="title function_">getScheme</span><span class="params">()</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="string">&quot;hftp&quot;</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><strong>5.在 <code>resources/META-INF/services</code> 目录下新建一个名为 <code>org.apache.hadoop.fs.FileSystem</code> 的文件，内容为 <code>HFTPFileSystem</code> 的全路径名</strong></p>
+<p><strong>6.将项目打成 <code>jar</code> 包</strong></p>
+<h2 id="06-自定义-FTPFileSystem-的使用"><a href="#06-自定义-FTPFileSystem-的使用" class="headerlink" title="06.自定义 FTPFileSystem 的使用"></a>06.自定义 FTPFileSystem 的使用</h2><ul>
+<li>将开发好的项目 <code>jar</code> 包放到 <code>Flink</code> 的 <code>lib</code> 路径下（必须放到 <code>lib</code> 路径下，打在作业 <code>jar</code> 中加载不到）；</li>
+<li>重启 <code>Flink Standalone</code> 集群；</li>
+<li>作业代码中将 <code>checkpoint</code> 目录设置为 <code>ftp</code>，协议头使用 <code>hftp</code>，设置方式如下：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="code"><pre><span class="line">env.setStateBackend(<span class="keyword">new</span> <span class="title class_">RocksDBStateBackend</span>(<span class="string">&quot;hftp://user:password@ip:port/path&quot;</span>).asInstanceOf[StateBackend])</span><br></pre></td></tr></table></figure>
+
+<p>此时，提交作业到集群，可以发现 <code>Job</code> 是正常运行的，<code>checkpoint</code> 数据也顺利落地到所配置的 <code>FTP</code> 目录。</p>
+<h2 id="07-参考资料"><a href="#07-参考资料" class="headerlink" title="07.参考资料"></a>07.参考资料</h2><ul>
+<li><a href="https://blog.csdn.net/weixin_41917987/article/details/90294765">Flink的standalone运行模式之State存储—-不使用HDFS</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Flink</category>
+      </categories>
+      <tags>
+        <tag>Flink</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Flink 使用 FTP 作为 Checkpoint 文件系统存在的问题</title>
+    <url>/2020/07/05/flink/Flink%20%E4%BD%BF%E7%94%A8%20FTP%20%E4%BD%9C%E4%B8%BA%20Checkpoint%20%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
+<span id="more"></span>
+
+<h2 id="01-背景说明"><a href="#01-背景说明" class="headerlink" title="01.背景说明"></a>01.背景说明</h2><a href="#">Post not found: Flink 使用 FTP 作为 Checkpoint 文件系统</a> 介绍了如何让 `Flink Checkpoint` 后端支持 `FTP`，并实现了此项功能。项目上线后，`FTP` 作为 `Flink Checkpoint` 状态后端可以正常工作，但项目运行一段时间后，偶尔在做 `Checkpoint` 时会出现端口被占用异常，从而出现 `Checkpoint` 失败，作业重启的问题。
+
+<h2 id="02-问题排查"><a href="#02-问题排查" class="headerlink" title="02.问题排查"></a>02.问题排查</h2><p>首先看下异常发生的位置：</p>
+<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/flink-ftp-checkpoint-failed.png"></p>
+<p>下面是我的排查思路：</p>
+<ul>
+<li>检查机器的端口，发现大量端口处于 <code>time_wait</code> 状态，推测短链接建立太多，机器端口被占用完；</li>
+<li>排查代码，<code>_serverSocketFactory_.createServerSocket</code> 绑定的端口是 0，意思是由操作系统分配可用端口，无端口可分配也会抛出端口被占用异常，进一步验证上面猜测；</li>
+</ul>
+<p>分析出机器端口被占用完，接下来就是找出 <code>FTPClient</code> 中为什么会有大量端口没被释放的问题了。还是回到 <code>_openDataConnection_</code> 方法，在 <code>FTPClient</code> 与 <code>FTP</code> 进行数据交互时，每个数据交互操作都需要调用这个方法，该方法会返回一个与服务端进行数据传输的 <code>Socket</code>，猜想如果这些 <code>Socket</code> 没被关闭，那么就会不断有端口被占用。而跟踪代码可以发现，<code>FTPClient</code> 在用完这些 <code>Socket</code> 后，都及时调用了其 <code>close</code> 方法去关闭连接，所以上面的猜想又进入了死胡同。</p>
+<p>在网上查阅相关资料，发现了下面一段描述：<code>socket.close()</code> 操作并不能立即释放绑定的端口，而是把端口设置为 <code>TIME_WAIT</code> 状态，过段时间(默认240s)才释放(用 <code>netstat -na</code> 可以看到)，如果建立短连接的操作较为频繁，可能会导致系统端口资源耗尽。所以，最终确定问题还是在 <code>Socket</code> 的关闭上，既然找到了问题所在，那么在不修改 <code>FTPClient</code> 代码的条件下，可采用如下解决方案：</p>
+<ul>
+<li>扩大机器可用的端口范围</li>
+<li>开启端口的复用与快速回收</li>
+</ul>
+<p>运维人员按上述方案对操作系统进行设置之后，<code>Checkpoint</code> 数据到 <code>FTP</code> 时，未再发生端口被占用问题。</p>
+<h2 id="03-参考资料"><a href="#03-参考资料" class="headerlink" title="03.参考资料"></a>03.参考资料</h2><ul>
+<li><a href="https://bbs.csdn.net/topics/320024769">请教Address already in use: connect问题</a></li>
+<li><a href="https://www.cnblogs.com/dasusu/p/10006899.html">记录 FTPClient 超时处理的相关问题</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>Flink</category>
+      </categories>
+      <tags>
+        <tag>Flink</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Flink 源码浅析 001：算子内部做了什么</title>
+    <url>/2018/05/18/flink/Flink%20%E6%BA%90%E7%A0%81%E6%B5%85%E6%9E%90%20001%EF%BC%9A%E7%AE%97%E5%AD%90%E5%86%85%E9%83%A8%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88/</url>
+    <content><![CDATA[<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
+<span id="more"></span>
+
+<blockquote>
+<p>从读书到工作，断断续续记过一些笔记，但一直没能坚持下来。总结了几个原因：<br>1.嫌弃笔记的排版不美观<del>太丑了，写了自己都不想看<br>2.追求笔记的大而全</del>主题衍生内容繁杂，多到不想写<br>3.懒~显而易见😂</p>
+<p>为了能坚持下去，特将本系列文章命名为《浅析》，提醒自己在每篇文章中，尽量用简短的篇幅、简明的语言去大致说清楚一个主题，要更多地关注主干脉络，不要陷在细枝末节中。</p>
+<p>闲话少叙，本文我们来看下当调用 Flink 算子的时候，框架内部做了哪些工作。</p>
+</blockquote>
+<h2 id="有请-Word-Count"><a href="#有请-Word-Count" class="headerlink" title="有请 Word Count"></a>有请 Word Count</h2><p><code>Word Count</code> 之于大数据正如 <code>Hello World</code> 之于编程语言，虽然简单，但执行过程却涉及到底层的诸多方面。下面我们通过一个 <code>Flink Word Count</code> 示例来复习下 <code>Flink</code> 算子的使用，后文将以 <code>flatMap</code> 为例，来探究算子的内部实现。</p>
+<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/flink-word-count.png"></p>
+<h2 id="相关概念介绍"><a href="#相关概念介绍" class="headerlink" title="相关概念介绍"></a>相关概念介绍</h2><p>磨刀不误砍柴功，在探索 <code>flatMap</code> 的执行流程之前，先来看下 <code>Flink</code> 作业中的一些抽象，具体包括 <code>Function</code>、<code>StreamOperator</code>、<code>Transformation</code>、<code>DataStream</code>。</p>
+<p><strong>1.Function</strong></p>
+<p>用户自定义函数的基类，<code>Word Count</code> 示例中的 <code>Tokenizer</code> 实现了 <code>FlatMapFunction</code>，<code>FlatMapFunction</code> 便是 <code>Function</code> 的一个子类</p>
+<p><strong>2.StreamOperator</strong></p>
+<p><code>Flink</code> 算子在运行时的体现，<code>AbstractUdfStreamOperator</code> 是其一个抽象子类，表示包含 <code>Function</code> 的 <code>StreamOperator</code></p>
+<p><strong>3.Transformation</strong></p>
+<p>对 <code>DataStream</code> 的转换操作，<code>OneInputTransformation</code> 是其一个子类，包含 <code>OneInputStreamOperator</code></p>
+<p><strong>4.DataStream</strong></p>
+<p>可以简单将其理解为对 <code>Transformation</code> 和 <code>StreamExecutionEnvironment</code> 的上层封装，<code>SingleOutputStreamOperator</code> 是其一个子类</p>
+<h2 id="flatMap-执行流程"><a href="#flatMap-执行流程" class="headerlink" title="flatMap 执行流程"></a>flatMap 执行流程</h2><p><code>flatMap</code> 的调用链如下图所示：</p>
+<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/flink-method-doTransform.png"></p>
+<p><strong>1.获取 <code>FlatMapFunction</code> 的返回类型，然后调用带返回类型的重载方法</strong></p>
+<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/flink-method-flatmap-1.png"></p>
+<p>调用 <code>flatMap</code> 方法时，如果没有指定返回类型，那么会通过 <code>TypeExtractor</code> 来自动提取返回类型，然后再调用带返回类型的重载方法。</p>
+<p>上述代码中有几个有意思的地方有必要了解下：</p>
+<ul>
+<li><code>clean(flatMapper)</code>：闭包清除。简单解释下，内部类持有外部类的引用，如果外部类不可序列化，那么内部类即使实现了序列化接口，也是无法序列化的，闭包清除就是通过字节码技术，将内部类中持有的外部类引用给清除掉，更多信息可参考：<a href="https://issues.apache.org/jira/browse/FLINK-1325">FLINK-1325</a>；</li>
+<li><code>Utils.getCallLocationName()</code>：获取方法的调用位置，该功能是通过 <code>Thread#getStackTrace()</code> 实现的，我们一般很少使用，在框架或工具中用的较多；</li>
+<li><code>getFlatMapReturnTypes</code> 的第四个参数：true 表示当提取类型失败时，返回一个 <code>MissingTypeInfo</code> 实例，而不是抛出异常；</li>
+</ul>
+<p>2.创建 <code>StreamFlatMap</code>，调用 <code>transform</code> 方法</p>
+<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/flink-datastream-flatmap-2.png"></p>
+<p><code>StreamFlatMap</code> 是 <code>AbstractUdfStreamOperator</code> 的子类，在 <code>Flink</code> 作业运行时，每来一条数据，其 <code>processElement</code> 方法会被调用一次，内部其实就是调用 <code>FlatMapFunction</code> 的 <code>flatMap</code> 方法来处理数据。</p>
+<p>3.创建 <code>SimpleOperatorFactory</code>，调用 <code>doTransform</code> 方法</p>
+<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/flink-method-transform.png"></p>
+<p><code>SimpleOperatorFactory</code> 是 <code>StreamOperator</code> 的工厂类子类，是对已有 <code>StreamOperator</code> 的封装，可以对 <code>StreamOperator</code> 做一些额外配置，如设置算子链接策略、定时器服务等。</p>
+<p>4.实现用户代码到 <code>Transformation</code> 转换的核心逻辑</p>
+<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/flink-method-doTransform-1.png"></p>
+<p>这里进入到创建 <code>Transformation</code> 的核心流程：</p>
+<ul>
+<li>触发异常：前面我们提到过，<code>TypeExtractor#getFlatMapReturnTypes</code> 方法提取函数的返回类型时，第四个参数用于控制类型提取失败时是否抛出异常，如果为 true，不抛出异常，而是返回 <code>MissingTypeInfo</code>。当前步骤的目的即是用于触发异常，当上一个 <code>Transformation</code> 的输出是 <code>MissingTypeInfo</code> 时，抛出异常；</li>
+<li>创建 <code>OneInputTransformation</code>：可以发现，<code>OneInputTransformation</code> 除了包含 <code>StreamOperator</code> 外，还记录了上游 <code>Transformation</code>、输出类型、并行度等信息；</li>
+<li>将 <code>Transformation</code> 和 <code>StreamExecutionEnvironment</code> 封装为 <code>DataStream</code>，这里是 <code>SingleOutputStreamOperator</code>；</li>
+<li>将 <code>Transformation</code> 记录到 <code>StreamExecutionEnvironment</code>：<code>StreamExecutionEnvironment</code> 有个列表类型的成员变量 <code>transformations</code>，用于顺序记录 <code>Flink</code> 作业中包含的 <code>Transformation</code>，后续将遍历该成员变量来创建 <code>StreamGraph</code>；</li>
+<li>返回 DataStream，继续执行转换；</li>
+</ul>
+<p>熟悉 <code>Flink</code> 的用户应该知道，我们可以调用 <code>setParallelism</code> 方法来指定算子的并行度，其方法实现如下：</p>
+<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/flink-method-setParallelism.png"></p>
+<p>可以发现，这里其实是设置  <code>Transformation</code>  的并行度。并不是所有的 <code>Transformation</code> 都是可以并行的，所以设置之前，会先对并行度的合法性进行校验。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>用户算子的执行过程，其实就是创建 <code>Transformation</code> 的过程，这些 <code>Transformation</code> 记录在 <code>StreamExecutionEnvironment</code> 中，后续将基于此来创建 <code>StreamGraph</code>。</p>
+]]></content>
+      <categories>
+        <category>Flink</category>
+      </categories>
+      <tags>
+        <tag>Flink</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo 的 Next 主题美化</title>
-    <url>/2022/06/06/Hexo%20%E7%9A%84%20Next%20%E4%B8%BB%E9%A2%98%E7%BE%8E%E5%8C%96/</url>
+    <url>/2022/06/06/other/Hexo%20%E7%9A%84%20Next%20%E4%B8%BB%E9%A2%98%E7%BE%8E%E5%8C%96/</url>
     <content><![CDATA[<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
 <span id="more"></span>
 
@@ -179,7 +322,7 @@
   </entry>
   <entry>
     <title>基于 Github + PicGo 搭建个人图床</title>
-    <url>/2022/06/06/%E5%9F%BA%E4%BA%8E%20Github%20+%20PicGo%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/</url>
+    <url>/2022/06/06/other/%E5%9F%BA%E4%BA%8E%20Github%20+%20PicGo%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/</url>
     <content><![CDATA[<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
 <span id="more"></span>
 
@@ -200,7 +343,7 @@
   </entry>
   <entry>
     <title>基于 Hexo + Github Pages + Github Actions 搭建个人博客</title>
-    <url>/2022/06/06/%E5%9F%BA%E4%BA%8E%20Hexo%20+%20Github%20Pages%20+%20Github%20Actions%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
+    <url>/2022/06/06/other/%E5%9F%BA%E4%BA%8E%20Hexo%20+%20Github%20Pages%20+%20Github%20Actions%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
 <span id="more"></span>
 
