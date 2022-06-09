@@ -2,9 +2,9 @@
 title: Flink 1.11.0 维表 join 条件中包含 UDF 时执行出错
 date: 2020-07-12 22:00:00
 updated: 2022-06-09 22:00:00
-tags: ["Flink"]
+tags: ["flink"]
 categories:
-  - Flink
+  - flink
 ---
 
 ![](https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png)

@@ -2,9 +2,9 @@
 title: Flink 使用 FTP 作为 Checkpoint 文件系统存在的问题
 date: 2020-07-05 22:00:00
 updated: 2022-06-08 22:00:00
-tags: ["Flink"]
+tags: ["flink"]
 categories:
-  - Flink
+  - flink
 ---
 
 ![](https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png)

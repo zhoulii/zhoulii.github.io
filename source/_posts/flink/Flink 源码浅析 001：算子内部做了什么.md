@@ -2,9 +2,9 @@
 title: Flink 源码浅析 001：算子内部做了什么
 date: 2018-05-18 22:00:00
 updated: 2022-06-08 22:00:00
-tags: ["Flink"]
+tags: ["flink"]
 categories:
-  - Flink
+  - flink
 ---
 
 ![](https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png)
