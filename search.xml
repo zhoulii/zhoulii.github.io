@@ -213,7 +213,7 @@
   </entry>
   <entry>
     <title>Hexo 的 Next 主题美化</title>
-    <url>/2022/06/06/github/Hexo%20%E7%9A%84%20Next%20%E4%B8%BB%E9%A2%98%E7%BE%8E%E5%8C%96/</url>
+    <url>/2022/06/06/tool/Hexo%20%E7%9A%84%20Next%20%E4%B8%BB%E9%A2%98%E7%BE%8E%E5%8C%96/</url>
     <content><![CDATA[<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
 <span id="more"></span>
 
@@ -382,15 +382,36 @@
 </ul>
 ]]></content>
       <categories>
-        <category>github</category>
+        <category>tool</category>
       </categories>
       <tags>
         <tag>hexo</tag>
       </tags>
   </entry>
   <entry>
+    <title>QTTabBar 安装使用</title>
+    <url>/2021/07/01/tool/QTTabBar%20%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
+<span id="more"></span>
+
+<h2 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h2><p>需要安装 .net3.5，win10 安装 .net3.5 的方法可参考 <a href="https://jingyan.baidu.com/article/455a9950dbe21de167277823.html">解决win10系统无法安装.NET Framework 3.5</a>。</p>
+<h2 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h2><p>国内开发者在 Github 上维护了一个 <a href="https://github.com/indiff/qttabbar">QTTabBar</a> 的汉化版本，下载安装即可，安装过程比较慢，耐心等待即可。</p>
+<h2 id="相关配置"><a href="#相关配置" class="headerlink" title="相关配置"></a>相关配置</h2><p>QTTabBar 启用后，资源管理器里面有一些网格线，看着不舒服，去掉这些网格线的方法如下：</p>
+<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/remove_grid_lines_caused_by_qttabbar.png"></p>
+<p>在标签栏有一个蓝色的加号按钮，看着也不习惯，去掉的方法如下：</p>
+<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/remove_blue_button_on_tab_bar.png"></p>
+<h2 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h2><p>没有安装 .net3.5 的机器安装 QTTabBar 后，在启用时会闪退。此时，并不是说把 .net3.5 装上，QTTabBar 就能用了，需要先卸载 QTTabBar 并删除一些注册信息，然后再重新安装 QTTabBar，具体的操作可参考 <a href="https://gitee.com/qwop/qttabbar/attach_files/581136/download">打开选项闪退的解决方案修订版</a>。</p>
+]]></content>
+      <categories>
+        <category>tool</category>
+      </categories>
+      <tags>
+        <tag>windows</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>基于 Github + PicGo 搭建个人图床</title>
-    <url>/2022/06/06/github/%E5%9F%BA%E4%BA%8E%20Github%20+%20PicGo%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/</url>
+    <url>/2022/06/06/tool/%E5%9F%BA%E4%BA%8E%20Github%20+%20PicGo%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/</url>
     <content><![CDATA[<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
 <span id="more"></span>
 
@@ -402,7 +423,7 @@
 <p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/pocgo-github-1.png"></p>
 ]]></content>
       <categories>
-        <category>github</category>
+        <category>tool</category>
       </categories>
       <tags>
         <tag>github</tag>
@@ -410,7 +431,7 @@
   </entry>
   <entry>
     <title>基于 Hexo + Github Pages + Github Actions 搭建个人博客</title>
-    <url>/2022/06/06/github/%E5%9F%BA%E4%BA%8E%20Hexo%20+%20Github%20Pages%20+%20Github%20Actions%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
+    <url>/2022/06/06/tool/%E5%9F%BA%E4%BA%8E%20Hexo%20+%20Github%20Pages%20+%20Github%20Actions%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/</url>
     <content><![CDATA[<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
 <span id="more"></span>
 
@@ -438,32 +459,11 @@
 </ul>
 ]]></content>
       <categories>
-        <category>github</category>
+        <category>tool</category>
       </categories>
       <tags>
         <tag>hexo</tag>
         <tag>github</tag>
-      </tags>
-  </entry>
-  <entry>
-    <title>QTTabBar 安装使用</title>
-    <url>/2021/07/01/os/QTTabBar%20%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/</url>
-    <content><![CDATA[<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
-<span id="more"></span>
-
-<h2 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h2><p>需要安装 .net3.5，win10 安装 .net3.5 的方法可参考 <a href="https://jingyan.baidu.com/article/455a9950dbe21de167277823.html">解决win10系统无法安装.NET Framework 3.5</a>。</p>
-<h2 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h2><p>国内开发者在 Github 上维护了一个 <a href="https://github.com/indiff/qttabbar">QTTabBar</a> 的汉化版本，下载安装即可，安装过程比较慢，耐心等待即可。</p>
-<h2 id="相关配置"><a href="#相关配置" class="headerlink" title="相关配置"></a>相关配置</h2><p>QTTabBar 启用后，资源管理器里面有一些网格线，看着不舒服，去掉这些网格线的方法如下：</p>
-<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/remove_grid_lines_caused_by_qttabbar.png"></p>
-<p>在标签栏有一个蓝色的加号按钮，看着也不习惯，去掉的方法如下：</p>
-<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/remove_blue_button_on_tab_bar.png"></p>
-<h2 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h2><p>没有安装 .net3.5 的机器安装 QTTabBar 后，在启用时会闪退。此时，并不是说把 .net3.5 装上，QTTabBar 就能用了，需要先卸载 QTTabBar 并删除一些注册信息，然后再重新安装 QTTabBar，具体的操作可参考 <a href="https://gitee.com/qwop/qttabbar/attach_files/581136/download">打开选项闪退的解决方案修订版</a>。</p>
-]]></content>
-      <categories>
-        <category>os</category>
-      </categories>
-      <tags>
-        <tag>windows</tag>
       </tags>
   </entry>
 </search>
