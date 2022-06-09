@@ -20,6 +20,55 @@
       </tags>
   </entry>
   <entry>
+    <title>Flink 1.11.0 连接 postgre 的问题</title>
+    <url>/2020/10/27/flink/Flink%201.11.0%20%E8%BF%9E%E6%8E%A5%20postgre%20%E7%9A%84%E9%97%AE%E9%A2%98/</url>
+    <content><![CDATA[<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
+<span id="more"></span>
+
+<h2 id="01-问题描述"><a href="#01-问题描述" class="headerlink" title="01.问题描述"></a>01.问题描述</h2><p>pg 中有一张 pg_sink 表，结构如下：</p>
+<table>
+<thead>
+<tr>
+<th>字段</th>
+<th>类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Name</td>
+<td>VARCHAR</td>
+</tr>
+<tr>
+<td>address</td>
+<td>VARCHAR</td>
+</tr>
+<tr>
+<td>work</td>
+<td>VARCHAR</td>
+</tr>
+</tbody></table>
+<p>使用 Flink 1.11.0 执行如下 SQL：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> pg_sink (</span><br><span class="line">	Name <span class="type">VARCHAR</span>,</span><br><span class="line">	address <span class="type">VARCHAR</span>,</span><br><span class="line">	work <span class="type">VARCHAR</span></span><br><span class="line">) <span class="keyword">with</span> (</span><br><span class="line">    <span class="string">&#x27;connector&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;jdbc&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;url&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;jdbc:postgresql://***:***/***&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;table-name&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;pg_sink&#x27;</span>,</span><br><span class="line">	...</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">create</span> <span class="keyword">table</span> kafka_source(</span><br><span class="line">    Name <span class="type">VARCHAR</span>,</span><br><span class="line">    address <span class="type">VARCHAR</span>,</span><br><span class="line">    work <span class="type">VARCHAR</span></span><br><span class="line">) <span class="keyword">with</span> (</span><br><span class="line">    <span class="string">&#x27;connector.type&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;kafka&#x27;</span>,</span><br><span class="line">    <span class="string">&#x27;format.type&#x27;</span> <span class="operator">=</span> <span class="string">&#x27;json&#x27;</span>,</span><br><span class="line">	...</span><br><span class="line">);</span><br><span class="line"></span><br><span class="line"><span class="keyword">insert</span> <span class="keyword">into</span> pg_sink </span><br><span class="line"><span class="keyword">select</span> <span class="operator">*</span> <span class="keyword">from</span> kafka_source;</span><br></pre></td></tr></table></figure>
+
+<p>上述 SQL 任务运行失败，错误信息如下：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">Caused by: org.postgresql.util.PSQLException: ERROR: column &quot;Name&quot; of relation &quot;pg_sink&quot; does not exist</span><br><span class="line">...</span><br></pre></td></tr></table></figure>
+
+<h2 id="02-原因分析"><a href="#02-原因分析" class="headerlink" title="02.原因分析"></a>02.原因分析</h2><p>参考《<a href="https://www.cnblogs.com/kaituorensheng/p/5445696.html">PostgreSQL 对字段大小写敏感</a>》，《<a href="https://blog.csdn.net/LittleGlassHeart/article/details/102566867">PostgreSQL 中的单引号与双引号</a>》</p>
+<h2 id="03-如何解决"><a href="#03-如何解决" class="headerlink" title="03.如何解决"></a>03.如何解决</h2><p><code>org.apache.flink.connector.jdbc.dialect.JdbcDialect#quoteIdentifier</code> 方法会对 SQL 中的字段加上双引号，而 <code>org.apache.flink.connector.jdbc.dialect.PostgresDialect#quoteIdentifier</code> 方法则不会对字段做出处理。所以，只需删除 <code>PostgresDialect#quoteIdentifier</code> 方法，让 <code>JdbcDialect#quoteIdentifier</code> 方法生效即可解决上述问题。</p>
+<h2 id="04-补充说明"><a href="#04-补充说明" class="headerlink" title="04.补充说明"></a>04.补充说明</h2><p>这种处理方式会引起其他问题，举例解释下：</p>
+<ul>
+<li>schemax.tablex： Schema 名为 schemax，表名为 tablex </li>
+<li>“schemax.tablex”：表名为 schemax.tablex</li>
+</ul>
+<p>所以，如果给标识符直接加上双引号，就没法区分 PG 的 Schema 了。关于该问题的更多讨论可参见 <a href="https://issues.apache.org/jira/browse/FLINK-19829">FLINK-19829</a>、<a href="https://issues.apache.org/jira/browse/FLINK-18640">FLINK-18640</a>。</p>
+]]></content>
+      <categories>
+        <category>flink</category>
+      </categories>
+      <tags>
+        <tag>flink</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Flink 使用 FTP 作为 Checkpoint 文件系统</title>
     <url>/2020/06/29/flink/Flink%20%E4%BD%BF%E7%94%A8%20FTP%20%E4%BD%9C%E4%B8%BA%20Checkpoint%20%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/</url>
     <content><![CDATA[<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
