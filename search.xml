@@ -520,6 +520,58 @@
       </tags>
   </entry>
   <entry>
+    <title>Jupyter Lab 的安装与配置</title>
+    <url>/2021/03/08/tool/Jupyter%20Lab%20%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
+<span id="more"></span>
+
+<h2 id="01-安装-jupyterlab"><a href="#01-安装-jupyterlab" class="headerlink" title="01.安装 jupyterlab"></a>01.安装 jupyterlab</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip install jupyterlab</span><br></pre></td></tr></table></figure>
+
+<h2 id="02-生成配置文件"><a href="#02-生成配置文件" class="headerlink" title="02.生成配置文件"></a>02.生成配置文件</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">jupyter lab --generate-config</span><br></pre></td></tr></table></figure>
+
+<h2 id="03-生成登录密码"><a href="#03-生成登录密码" class="headerlink" title="03.生成登录密码"></a>03.生成登录密码</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt; ipython</span></span><br><span class="line">Python 3.7.10 (default, Feb 26 2021, 18:47:35)</span><br><span class="line">Type &#x27;copyright&#x27;, &#x27;credits&#x27; or &#x27;license&#x27; for more information</span><br><span class="line">IPython 7.22.0 -- An enhanced Interactive Python. Type &#x27;?&#x27; for help.</span><br><span class="line"></span><br><span class="line">In [1]: from notebook.auth import passwd</span><br><span class="line"></span><br><span class="line">In [2]: passwd()</span><br><span class="line">Enter password:</span><br><span class="line">Verify password:</span><br><span class="line">Out[2]: &#x27;argon2:$argon2id$v=19$m=10240,t=10,p=8$c/W2UuRTJI1k4o40ygdcSA$/GAGaIdbluH45S2LWbrMOA&#x27;</span><br></pre></td></tr></table></figure>
+
+<h2 id="04-修改配置文件"><a href="#04-修改配置文件" class="headerlink" title="04.修改配置文件"></a>04.修改配置文件</h2><p>打开配置文件：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vim ~/.jupyter/jupyter_lab_config.py</span><br></pre></td></tr></table></figure>
+
+<p>修改如下配置：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">c.ServerApp.root_dir = &#x27;/opt/notebook&#x27;</span><br><span class="line">c.ServerApp.allow_root = True</span><br><span class="line">c.ServerApp.ip = &#x27;*&#x27;</span><br><span class="line">c.ServerApp.open_browser = False</span><br><span class="line">c.ServerApp.password_required = True</span><br><span class="line">c.ServerApp.password = &#x27;argon2:$argon2id$v=19$m=10240,t=10,p=8$c/W2UuRTJI1k4o40ygdcSA$/GAGaIdbluH45S2LWbrMOA&#x27;</span><br></pre></td></tr></table></figure>
+
+<h2 id="05-启动-jupyterlab"><a href="#05-启动-jupyterlab" class="headerlink" title="05.启动 jupyterlab"></a>05.启动 jupyterlab</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">jupyter lab</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>tool</category>
+      </categories>
+      <tags>
+        <tag>jupyter</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Jupyter Notebook 的安装与配置</title>
+    <url>/2020/09/19/tool/Jupyter%20Notebook%20%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
+<span id="more"></span>
+
+<h2 id="01-安装-jupyter-notebook"><a href="#01-安装-jupyter-notebook" class="headerlink" title="01.安装 jupyter notebook"></a>01.安装 jupyter notebook</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip install jupyter</span><br></pre></td></tr></table></figure>
+
+<h2 id="02-生成配置文件"><a href="#02-生成配置文件" class="headerlink" title="02.生成配置文件"></a>02.生成配置文件</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">jupyter notebook --generate-config</span><br></pre></td></tr></table></figure>
+
+<h2 id="03-生成登录密码"><a href="#03-生成登录密码" class="headerlink" title="03.生成登录密码"></a>03.生成登录密码</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_">&gt;</span><span class="language-bash">&gt; ipython</span></span><br><span class="line">Python 3.7.9 (default, Aug 31 2020, 07:22:35)</span><br><span class="line">Type &#x27;copyright&#x27;, &#x27;credits&#x27; or &#x27;license&#x27; for more information</span><br><span class="line">IPython 7.19.0 -- An enhanced Interactive Python. Type &#x27;?&#x27; for help.</span><br><span class="line"></span><br><span class="line">In [1]: from notebook.auth import passwd</span><br><span class="line"></span><br><span class="line">In [2]: passwd()</span><br><span class="line">Enter password:</span><br><span class="line">Verify password:</span><br><span class="line">Out[2]: &#x27;argon2:$argon2id$v=19$m=10240,t=10,p=8$4sWk2oPuIpqDtIw4MYb/9g$iTpy4dhz3to+3AlyBD7Btw&#x27;</span><br></pre></td></tr></table></figure>
+
+<h2 id="04-修改配置文件"><a href="#04-修改配置文件" class="headerlink" title="04.修改配置文件"></a>04.修改配置文件</h2><p>打开配置文件：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">vim ~/.jupyter/jupyter_notebook_config.py</span><br></pre></td></tr></table></figure>
+
+<p>修改如下配置：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置 Jupyter 监听的 ip 地址，修改为 * 表示监听所有 ip 地址</span></span><br><span class="line">c.NotebookApp.ip = &#x27;*&#x27;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置密码</span></span><br><span class="line">c.NotebookApp.password = u&#x27;argon2:$argon2id$v=19$m=10240,t=10,p=8$4sWk2oPuIpqDtIw4MYb/9g$iTpy4dhz3to+3AlyBD7Btw&#x27; </span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">禁止启动时自动打开浏览器</span></span><br><span class="line">c.NotebookApp.open_browser = False</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">指定端口，默认是8888</span></span><br><span class="line">c.NotebookApp.port = 8888</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">设置 notebook 文件的目录（要在启动前创建出来）</span></span><br><span class="line">c.NotebookApp.notebook_dir = &#x27;/Users/leo/Documents/notebook&#x27;</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">允许 root 用户运行</span></span><br><span class="line">c.NotebookApp.allow_root = True</span><br></pre></td></tr></table></figure>
+
+<h2 id="05-启动-juypter"><a href="#05-启动-juypter" class="headerlink" title="05.启动 juypter"></a>05.启动 juypter</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">jupyter notebook</span><br></pre></td></tr></table></figure>]]></content>
+      <categories>
+        <category>tool</category>
+      </categories>
+      <tags>
+        <tag>jupyter</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Mac 安装 PicGo</title>
     <url>/2019/01/15/tool/Mac%20%E5%AE%89%E8%A3%85%20PicGo/</url>
     <content><![CDATA[<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
@@ -561,6 +613,44 @@
       </categories>
       <tags>
         <tag>qttabar</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>Ubuntu 20.04 设置国内镜像源</title>
+    <url>/2021/07/01/tool/Ubuntu%2020.04%20%E8%AE%BE%E7%BD%AE%E5%9B%BD%E5%86%85%E9%95%9C%E5%83%8F%E6%BA%90/</url>
+    <content><![CDATA[<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
+<span id="more"></span>
+
+<h2 id="01-获取配置"><a href="#01-获取配置" class="headerlink" title="01.获取配置"></a>01.获取配置</h2><p>点击 <a href="https://mirrors.tuna.tsinghua.edu.cn/help/ubuntu/">Ubuntu 镜像使用帮助</a> ，选择合适的版本，获取到相应的配置，接下来就是修改 Ubuntu 的软件源。</p>
+<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/ubuntu_source_supported_by_tsinghua.png"></p>
+<h2 id="02-修改配置"><a href="#02-修改配置" class="headerlink" title="02.修改配置"></a>02.修改配置</h2><p>首先，进行备份：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo cp /etc/apt/sources.list /etc/apt/sources.list.back</span><br></pre></td></tr></table></figure>
+
+<p>然后，替换 source.list 内容：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal main restricted universe multiverse</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal main restricted universe multiverse</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-updates main restricted universe multiverse</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-updates main restricted universe multiverse</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-backports main restricted universe multiverse</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-backports main restricted universe multiverse</span></span><br><span class="line">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-security main restricted universe multiverse</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-security main restricted universe multiverse</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">预发布软件源，不建议启用</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">deb https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-proposed main restricted universe multiverse</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">deb-src https://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-proposed main restricted universe multiverse</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="03-更新索引"><a href="#03-更新索引" class="headerlink" title="03.更新索引"></a>03.更新索引</h2><p>更新包索引：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<p>该步骤出现了如下所示的证书异常：</p>
+<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/apt_get_update_error.png"></p>
+<p>解决办法也很简单，只需将源地址中的 https 修改为 http。替换 source.list 内容：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">默认注释了源码镜像以提高 apt update 速度，如有需要可自行取消注释</span></span><br><span class="line">deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal main restricted universe multiverse</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal main restricted universe multiverse</span></span><br><span class="line">deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-updates main restricted universe multiverse</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-updates main restricted universe multiverse</span></span><br><span class="line">deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-backports main restricted universe multiverse</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-backports main restricted universe multiverse</span></span><br><span class="line">deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-security main restricted universe multiverse</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-security main restricted universe multiverse</span></span><br><span class="line"><span class="meta prompt_"></span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">预发布软件源，不建议启用</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">deb http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-proposed main restricted universe multiverse</span></span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">deb-src http://mirrors.tuna.tsinghua.edu.cn/ubuntu/ focal-proposed main restricted universe multiverse</span></span><br></pre></td></tr></table></figure>
+
+<p>重新执行更新包索引命令，此时操作顺利完成。</p>
+<h2 id="04-升级软件"><a href="#04-升级软件" class="headerlink" title="04.升级软件"></a>04.升级软件</h2><p>更新完包索引后，可以执行如下命令来升级软件：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt-get upgrade</span><br></pre></td></tr></table></figure>
+
+<h2 id="05-测试验证"><a href="#05-测试验证" class="headerlink" title="05.测试验证"></a>05.测试验证</h2><p>最后，来安装一个软件，这个软件名称为 build-essential，它可以配置好 Ubuntu 上的 C&#x2F;C++ 的编译环境：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo apt install build-essential</span><br></pre></td></tr></table></figure>
+
+<p>安装操作可正常完成，无异常发生。</p>
+]]></content>
+      <categories>
+        <category>tool</category>
+      </categories>
+      <tags>
+        <tag>ubuntu</tag>
       </tags>
   </entry>
   <entry>
