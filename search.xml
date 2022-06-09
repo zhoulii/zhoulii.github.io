@@ -1,6 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <search>
   <entry>
+    <title>Flink 1.11.0 维表 join 条件中包含 UDF 时执行出错</title>
+    <url>/2020/07/12/flink/Flink%201.11.0%20%E7%BB%B4%E8%A1%A8%20join%20%E6%9D%A1%E4%BB%B6%E4%B8%AD%E5%8C%85%E5%90%AB%20UDF%20%E6%97%B6%E6%89%A7%E8%A1%8C%E5%87%BA%E9%94%99/</url>
+    <content><![CDATA[<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
+<span id="more"></span>
+
+<h2 id="01-背景"><a href="#01-背景" class="headerlink" title="01.背景"></a>01.背景</h2><p>当 flink 1.11.0 执行如下 sql 时报错：</p>
+<figure class="highlight sql"><table><tr><td class="code"><pre><span class="line"><span class="keyword">select</span> t1.id, t1.product, t2.price <span class="keyword">from</span> table1 <span class="keyword">as</span> t1</span><br><span class="line"><span class="keyword">join</span> table2 <span class="keyword">for</span> <span class="built_in">system_time</span> <span class="keyword">as</span> <span class="keyword">of</span> t1.proctime <span class="keyword">as</span> t2</span><br><span class="line"><span class="keyword">on</span> t1.id <span class="operator">=</span> t2.id <span class="keyword">where</span> <span class="built_in">current_date</span> <span class="operator">=</span> t2.sell_date</span><br></pre></td></tr></table></figure>
+
+<h2 id="02-排查"><a href="#02-排查" class="headerlink" title="02.排查"></a>02.排查</h2><p>出错位置位于 <code>CommonLookupJoin#extractConstantField</code>，原因是 RexCall 类型匹配不上，可以在该方法的 match 语句中增加 <code>case _ =&gt; return</code> 来解决该问题。</p>
+<h2 id="03-补充"><a href="#03-补充" class="headerlink" title="03.补充"></a>03.补充</h2><p><a href="https://issues.apache.org/jira/browse/FLINK-18212">FLINK-18212</a> 已经提出并解决了该问题</p>
+]]></content>
+      <categories>
+        <category>Flink</category>
+      </categories>
+      <tags>
+        <tag>Flink</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Flink 使用 FTP 作为 Checkpoint 文件系统</title>
     <url>/2020/06/29/flink/Flink%20%E4%BD%BF%E7%94%A8%20FTP%20%E4%BD%9C%E4%B8%BA%20Checkpoint%20%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/</url>
     <content><![CDATA[<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
