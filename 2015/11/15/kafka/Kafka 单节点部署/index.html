@@ -22,15 +22,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Leo&#39;s Blog">
-<meta property="og:url" content="http://example.com/archives/2019/index.html">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="Kafka 单点部署">
+<meta property="og:url" content="http://example.com/2015/11/15/kafka/Kafka%20%E5%8D%95%E8%8A%82%E7%82%B9%E9%83%A8%E7%BD%B2/index.html">
 <meta property="og:site_name" content="Leo&#39;s Blog">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png">
+<meta property="article:published_time" content="2015-11-15T22:00:00.000Z">
+<meta property="article:modified_time" content="2022-06-09T22:00:00.000Z">
 <meta property="article:author" content="Leo">
+<meta property="article:tag" content="kakfa">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png">
 
-<link rel="canonical" href="http://example.com/archives/2019/">
+<link rel="canonical" href="http://example.com/2015/11/15/kafka/Kafka%20%E5%8D%95%E8%8A%82%E7%82%B9%E9%83%A8%E7%BD%B2/">
 
 
 <script id="page-configurations">
@@ -38,12 +43,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>归档 | Leo's Blog</title>
+  <title>Kafka 单点部署 | Leo's Blog</title>
   
 
 
@@ -185,70 +190,113 @@
         <div class="content-wrap">
           
 
-          <div class="content archive">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 15 篇日志。 继续努力。</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2015/11/15/kafka/Kafka%20%E5%8D%95%E8%8A%82%E7%82%B9%E9%83%A8%E7%BD%B2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/gakki.png">
+      <meta itemprop="name" content="Leo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leo's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Kafka 单点部署
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2015-11-15 22:00:00" itemprop="dateCreated datePublished" datetime="2015-11-15T22:00:00+00:00">2015-11-15</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-06-09 22:00:00" itemprop="dateModified" datetime="2022-06-09T22:00:00+00:00">2022-06-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/kakfa/" itemprop="url" rel="index"><span itemprop="name">kakfa</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2019</span>
-    </div>
+        <p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
+<span id="more"></span>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+<h2 id="01-配置并启动-zk"><a href="#01-配置并启动-zk" class="headerlink" title="01.配置并启动 zk"></a>01.配置并启动 zk</h2><p>进入 conf 目录，将 zoo_sample.cfg 重命名为 zoo.cfg，配置 zoo.cfg 中的 dataDir，然后启动 zk：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/zkServer.sh start</span><br></pre></td></tr></table></figure>
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-01-15T22:00:00+00:00"
-              content="2019-01-15">
-          01-15
-        </time>
-      </div>
+<h2 id="02-配置并启动-kafka"><a href="#02-配置并启动-kafka" class="headerlink" title="02.配置并启动 kafka"></a>02.配置并启动 kafka</h2><p>配置 server.properties 中的 log.dirs，然后启动 kafka：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-server-start.sh -daemon config/server.properties</span><br></pre></td></tr></table></figure>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2019/01/15/tool/Mac%20%E5%AE%89%E8%A3%85%20PicGo/" itemprop="url">
-            <span itemprop="name">Mac 安装 PicGo</span>
-          </a>
-      </div>
+<h2 id="03-topic-相关命令"><a href="#03-topic-相关命令" class="headerlink" title="03.topic 相关命令"></a>03.topic 相关命令</h2><ul>
+<li>创建 topic</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-topics.sh \</span><br><span class="line">--zookeeper localhost:2181 \</span><br><span class="line">--create \</span><br><span class="line">--topic model_topic \</span><br><span class="line">--partitions 3 \</span><br><span class="line">--replication-factor 1</span><br></pre></td></tr></table></figure>
 
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2019-01-15T22:00:00+00:00"
-              content="2019-01-15">
-          01-15
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2019/01/15/tool/%E5%9F%BA%E4%BA%8E%20PicGo&Gitee%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/" itemprop="url">
-            <span itemprop="name">基于 PicGo&Gitee 搭建个人图床</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
+<ul>
+<li>查看 topic</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">bin/kafka-topics.sh \</span><br><span class="line">--zookeeper localhost:2181 \</span><br><span class="line">--list</span><br></pre></td></tr></table></figure>
 
 
     </div>
-  </div>
-  
-  
-  
 
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/kakfa/" rel="tag"># kakfa</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2018/05/18/flink/Flink%20%E6%BA%90%E7%A0%81%E6%B5%85%E6%9E%90%20001%EF%BC%9A%E7%AE%97%E5%AD%90%E5%86%85%E9%83%A8%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88/" rel="next" title="Flink 源码浅析 001：算子内部做了什么">
+      Flink 源码浅析 001：算子内部做了什么 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
 
@@ -301,6 +349,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#01-%E9%85%8D%E7%BD%AE%E5%B9%B6%E5%90%AF%E5%8A%A8-zk"><span class="nav-text">01.配置并启动 zk</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#02-%E9%85%8D%E7%BD%AE%E5%B9%B6%E5%90%AF%E5%8A%A8-kafka"><span class="nav-text">02.配置并启动 kafka</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#03-topic-%E7%9B%B8%E5%85%B3%E5%91%BD%E4%BB%A4"><span class="nav-text">03.topic 相关命令</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

@@ -313,6 +313,36 @@
       </tags>
   </entry>
   <entry>
+    <title>Kafka 单点部署</title>
+    <url>/2015/11/15/kafka/Kafka%20%E5%8D%95%E8%8A%82%E7%82%B9%E9%83%A8%E7%BD%B2/</url>
+    <content><![CDATA[<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
+<span id="more"></span>
+
+<h2 id="01-配置并启动-zk"><a href="#01-配置并启动-zk" class="headerlink" title="01.配置并启动 zk"></a>01.配置并启动 zk</h2><p>进入 conf 目录，将 zoo_sample.cfg 重命名为 zoo.cfg，配置 zoo.cfg 中的 dataDir，然后启动 zk：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">bin/zkServer.sh start</span><br></pre></td></tr></table></figure>
+
+<h2 id="02-配置并启动-kafka"><a href="#02-配置并启动-kafka" class="headerlink" title="02.配置并启动 kafka"></a>02.配置并启动 kafka</h2><p>配置 server.properties 中的 log.dirs，然后启动 kafka：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">bin/kafka-server-start.sh -daemon config/server.properties</span><br></pre></td></tr></table></figure>
+
+<h2 id="03-topic-相关命令"><a href="#03-topic-相关命令" class="headerlink" title="03.topic 相关命令"></a>03.topic 相关命令</h2><ul>
+<li>创建 topic</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">bin/kafka-topics.sh \</span><br><span class="line">--zookeeper localhost:2181 \</span><br><span class="line">--create \</span><br><span class="line">--topic model_topic \</span><br><span class="line">--partitions 3 \</span><br><span class="line">--replication-factor 1</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>查看 topic</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">bin/kafka-topics.sh \</span><br><span class="line">--zookeeper localhost:2181 \</span><br><span class="line">--list</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>kakfa</category>
+      </categories>
+      <tags>
+        <tag>kakfa</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo 的 Next 主题美化</title>
     <url>/2022/06/06/tool/Hexo%20%E7%9A%84%20Next%20%E4%B8%BB%E9%A2%98%E7%BE%8E%E5%8C%96/</url>
     <content><![CDATA[<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
@@ -589,6 +619,33 @@
       <tags>
         <tag>hexo</tag>
         <tag>github</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>基于 PicGo&amp;Gitee 搭建个人图床</title>
+    <url>/2019/01/15/tool/%E5%9F%BA%E4%BA%8E%20PicGo&amp;Gitee%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/</url>
+    <content><![CDATA[<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
+<span id="more"></span>
+
+<h2 id="01-Gitee-相关配置"><a href="#01-Gitee-相关配置" class="headerlink" title="01.Gitee 相关配置"></a>01.Gitee 相关配置</h2><p>首先要在 Gitee 上创建一个仓库，然后就是生成私人令牌。在 Gitee 的设置页面可以找到私人令牌标签，按下图所示进行配置，记住生成的私人令牌。</p>
+<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/create_personal_access_token_for_picgo.png"></p>
+<h2 id="02-PicGo-相关配置"><a href="#02-PicGo-相关配置" class="headerlink" title="02.PicGo 相关配置"></a>02.PicGo 相关配置</h2><p>下载安装 <a href="https://github.com/Molunerfinn/PicGo/releases">PicGo</a>，然后将镜像地址设置为 <code>https://registry.npm.taobao.org/</code>。</p>
+<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/set_the_mirror_repository_for_picgo_plugin_1.png"></p>
+<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/set_the_mirror_repository_for_picgo_plugin_2.png"></p>
+<p>打开插件设置栏，搜索安装 Gitee 插件（<em>如果没有 nodejs 环境，那么需要先安装 nodejs，然后重启 PicGo</em>） 。</p>
+<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/install_gitee_plugin_for_picgo.png"></p>
+<p>接下来就是配置 Gitee 图床，配置参数含义可参照下图注解。</p>
+<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/config_gitee_plugin_for_pico.png"></p>
+<h2 id="03-上传区及相册"><a href="#03-上传区及相册" class="headerlink" title="03.上传区及相册"></a>03.上传区及相册</h2><p>完成上述操作之后，即可在 PicGo 的上传区上传图片。</p>
+<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/upload_image_to_gitee_by_picgo.png"></p>
+<p>在相册栏可以查看已上传的图片，还可以复制链接、修改链接、删除图片以及进行一些批量操作。</p>
+<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/album_in_picgo.png"></p>
+]]></content>
+      <categories>
+        <category>tool</category>
+      </categories>
+      <tags>
+        <tag>picgo</tag>
       </tags>
   </entry>
 </search>
