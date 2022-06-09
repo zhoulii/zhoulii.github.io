@@ -22,15 +22,20 @@
     var CONFIG = {"hostname":"example.com","root":"/","scheme":"Gemini","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":true},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":true,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Leo&#39;s Blog">
-<meta property="og:url" content="http://example.com/archives/2020/index.html">
+  <meta property="og:type" content="article">
+<meta property="og:title" content="Maven 常用配置及操作">
+<meta property="og:url" content="http://example.com/2016/03/31/tool/Maven%20%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E5%8F%8A%E6%93%8D%E4%BD%9C/index.html">
 <meta property="og:site_name" content="Leo&#39;s Blog">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png">
+<meta property="article:published_time" content="2016-03-31T22:00:00.000Z">
+<meta property="article:modified_time" content="2022-06-09T22:00:00.000Z">
 <meta property="article:author" content="Leo">
+<meta property="article:tag" content="maven">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png">
 
-<link rel="canonical" href="http://example.com/archives/2020/">
+<link rel="canonical" href="http://example.com/2016/03/31/tool/Maven%20%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E5%8F%8A%E6%93%8D%E4%BD%9C/">
 
 
 <script id="page-configurations">
@@ -38,12 +43,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'zh-CN'
   };
 </script>
 
-  <title>归档 | Leo's Blog</title>
+  <title>Maven 常用配置及操作 | Leo's Blog</title>
   
 
 
@@ -185,190 +190,128 @@
         <div class="content-wrap">
           
 
-          <div class="content archive">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">嗯..! 目前共计 20 篇日志。 继续努力。</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2016/03/31/tool/Maven%20%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E5%8F%8A%E6%93%8D%E4%BD%9C/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/gakki.png">
+      <meta itemprop="name" content="Leo">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leo's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Maven 常用配置及操作
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2016-03-31 22:00:00" itemprop="dateCreated datePublished" datetime="2016-03-31T22:00:00+00:00">2016-03-31</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2022-06-09 22:00:00" itemprop="dateModified" datetime="2022-06-09T22:00:00+00:00">2022-06-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/tool/" itemprop="url" rel="index"><span itemprop="name">tool</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2020</span>
-    </div>
+        <p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
+<span id="more"></span>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+<h2 id="01-Maven-设置阿里云镜像"><a href="#01-Maven-设置阿里云镜像" class="headerlink" title="01.Maven 设置阿里云镜像"></a>01.Maven 设置阿里云镜像</h2><p>修改 <code>$MAVEN_HOME/conf/settings.xml</code> 文件中的 mirrors 标签，配置如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mirrors</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus-aliyun<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">name</span>&gt;</span>Nexus aliyun<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>*<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span>        </span><br><span class="line">	<span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mirrors</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-10-27T22:00:00+00:00"
-              content="2020-10-27">
-          10-27
-        </time>
-      </div>
+<h2 id="02-Maven-配置本地仓库路径"><a href="#02-Maven-配置本地仓库路径" class="headerlink" title="02.Maven 配置本地仓库路径"></a>02.Maven 配置本地仓库路径</h2><p>找到 <code>$MAVEN_HOME/conf/settings.xml</code> 文件中的 <code>localRepository</code> 标签，将注释打开，并配置本地仓库路径，示例如下：</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">localRepository</span>&gt;</span>D:\repository<span class="tag">&lt;/<span class="name">localRepository</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/10/27/flink/Flink%201.11.0%20%E8%BF%9E%E6%8E%A5%20postgre%20%E7%9A%84%E9%97%AE%E9%A2%98/" itemprop="url">
-            <span itemprop="name">Flink 1.11.0 连接 postgre 的问题</span>
-          </a>
-      </div>
+<h2 id="03-Maven-编译时跳过-test"><a href="#03-Maven-编译时跳过-test" class="headerlink" title="03.Maven 编译时跳过 test"></a>03.Maven 编译时跳过 test</h2><p>跳过 test 的执行，但会编译：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn clean install -DskipTests</span><br></pre></td></tr></table></figure>
 
-    </header>
-  </article>
+<p>跳过 test 编译：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn clean install -Dmaven.test.skip=true</span><br></pre></td></tr></table></figure>
 
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+<h2 id="04-Maven-断点续编"><a href="#04-Maven-断点续编" class="headerlink" title="04.Maven 断点续编"></a>04.Maven 断点续编</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn &lt;goals&gt; -rf :&lt;moduleName&gt;</span><br></pre></td></tr></table></figure>
 
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-10-11T22:00:00+00:00"
-              content="2020-10-11">
-          10-11
-        </time>
-      </div>
+<h2 id="05-Maven-离线安装依赖"><a href="#05-Maven-离线安装依赖" class="headerlink" title="05.Maven 离线安装依赖"></a>05.Maven 离线安装依赖</h2><p>在 shell 中执行如下命令来离线安装依赖包：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn install:install-file -DgroupId=io.confluent -DartifactId=kafka-schema-registry-client -Dversion=3.3.1 -Dpackaging=jar -Dfile=C:\Users\Leo\Downloads\kafka-schema-registry-client-3.3.1.jar</span><br></pre></td></tr></table></figure>
 
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/10/11/flink/Flink%201.11%20%E6%96%B0%E7%89%B9%E6%80%A7%EF%BC%9AApplication%20%E9%83%A8%E7%BD%B2%E6%A8%A1%E5%BC%8F/" itemprop="url">
-            <span itemprop="name">Flink 1.11 新特性：Application 部署模式</span>
-          </a>
-      </div>
+<p>如果需要指定 classifier，可执行下面命令（需要注意 classifier 的位置，原因可参考《<a target="_blank" rel="noopener" href="https://www.cnblogs.com/lnlvinso/p/10111328.html">Maven的classifier作用</a>》）：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mvn install:install-file -DgroupId=org.apache.flink -DartifactId=flink-table-planner-blink_2.11 -Dversion=1.12-SNAPSHOT -Dclassifier=tests -Dpackaging=jar -Dfile=C:\Users\zhouli16\Downloads\flink-table-planner-blink_2.11-1.12-20200706.040013-54-tests.jar</span><br></pre></td></tr></table></figure>
 
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-09-19T22:00:00+00:00"
-              content="2020-09-19">
-          09-19
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/09/19/tool/Jupyter%20Notebook%20%E7%9A%84%E5%AE%89%E8%A3%85%E4%B8%8E%E9%85%8D%E7%BD%AE/" itemprop="url">
-            <span itemprop="name">Jupyter Notebook 的安装与配置</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-07-12T22:00:00+00:00"
-              content="2020-07-12">
-          07-12
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/07/12/flink/Flink%201.11.0%20%E7%BB%B4%E8%A1%A8%20join%20%E6%9D%A1%E4%BB%B6%E4%B8%AD%E5%8C%85%E5%90%AB%20UDF%20%E6%97%B6%E6%89%A7%E8%A1%8C%E5%87%BA%E9%94%99/" itemprop="url">
-            <span itemprop="name">Flink 1.11.0 维表 join 条件中包含 UDF 时执行出错</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-07-05T22:00:00+00:00"
-              content="2020-07-05">
-          07-05
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/07/05/flink/Flink%20%E4%BD%BF%E7%94%A8%20FTP%20%E4%BD%9C%E4%B8%BA%20Checkpoint%20%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98/" itemprop="url">
-            <span itemprop="name">Flink 使用 FTP 作为 Checkpoint 文件系统存在的问题</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-06-29T22:00:00+00:00"
-              content="2020-06-29">
-          06-29
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/06/29/flink/Flink%20%E4%BD%BF%E7%94%A8%20FTP%20%E4%BD%9C%E4%B8%BA%20Checkpoint%20%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/" itemprop="url">
-            <span itemprop="name">Flink 使用 FTP 作为 Checkpoint 文件系统</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-05-11T22:00:00+00:00"
-              content="2020-05-11">
-          05-11
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/05/11/flink/Flink%20SQL%20%E4%B8%AD%E6%97%B6%E9%97%B4%E6%88%B3%E7%9A%84%E4%BD%BF%E7%94%A8/" itemprop="url">
-            <span itemprop="name">Flink 1.11 新特性：Application 部署模式</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-04-12T22:00:00+00:00"
-              content="2020-04-12">
-          04-12
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/04/12/flink/Flink%20SQL%20%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E8%A1%8C%E8%BD%AC%E5%A4%9A%E8%A1%8C/" itemprop="url">
-            <span itemprop="name">Flink SQL 如何实现一行转多行</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
+<blockquote>
+<p>问题：在 powershell 中执行会失败</p>
+<p>解决：使用 CMD 来执行，或者给参数加上引号，如 <code>-DgroupId=io.confluent</code> 修改为 <code>-D&quot;groupId=io.confluent&quot;</code></p>
+</blockquote>
+<blockquote>
+<p>问题：通过离线方式安装依赖包时，maven-shade-plugin 无法将依赖的依赖一起打入 jar 包</p>
+<p>解决：执行 <code>install:install-file</code> 时，使用 <code>-DpomFile=xxx</code> 来指定依赖的 pom 文件</p>
+</blockquote>
 
     </div>
-  </div>
-  
-  
-  
 
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/maven/" rel="tag"># maven</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2015/11/15/kafka/Kafka%20%E5%8D%95%E8%8A%82%E7%82%B9%E9%83%A8%E7%BD%B2/" rel="prev" title="Kafka 单点部署">
+      <i class="fa fa-chevron-left"></i> Kafka 单点部署
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2018/05/18/flink/Flink%20%E6%BA%90%E7%A0%81%E6%B5%85%E6%9E%90%20001%EF%BC%9A%E7%AE%97%E5%AD%90%E5%86%85%E9%83%A8%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88/" rel="next" title="Flink 源码浅析 001：算子内部做了什么">
+      Flink 源码浅析 001：算子内部做了什么 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
   
 
 
@@ -421,6 +364,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#01-Maven-%E8%AE%BE%E7%BD%AE%E9%98%BF%E9%87%8C%E4%BA%91%E9%95%9C%E5%83%8F"><span class="nav-text">01.Maven 设置阿里云镜像</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#02-Maven-%E9%85%8D%E7%BD%AE%E6%9C%AC%E5%9C%B0%E4%BB%93%E5%BA%93%E8%B7%AF%E5%BE%84"><span class="nav-text">02.Maven 配置本地仓库路径</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#03-Maven-%E7%BC%96%E8%AF%91%E6%97%B6%E8%B7%B3%E8%BF%87-test"><span class="nav-text">03.Maven 编译时跳过 test</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#04-Maven-%E6%96%AD%E7%82%B9%E7%BB%AD%E7%BC%96"><span class="nav-text">04.Maven 断点续编</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#05-Maven-%E7%A6%BB%E7%BA%BF%E5%AE%89%E8%A3%85%E4%BE%9D%E8%B5%96"><span class="nav-text">05.Maven 离线安装依赖</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

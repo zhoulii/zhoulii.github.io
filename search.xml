@@ -595,6 +595,48 @@
       </tags>
   </entry>
   <entry>
+    <title>Maven 常用配置及操作</title>
+    <url>/2016/03/31/tool/Maven%20%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E5%8F%8A%E6%93%8D%E4%BD%9C/</url>
+    <content><![CDATA[<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
+<span id="more"></span>
+
+<h2 id="01-Maven-设置阿里云镜像"><a href="#01-Maven-设置阿里云镜像" class="headerlink" title="01.Maven 设置阿里云镜像"></a>01.Maven 设置阿里云镜像</h2><p>修改 <code>$MAVEN_HOME/conf/settings.xml</code> 文件中的 mirrors 标签，配置如下：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mirrors</span>&gt;</span></span><br><span class="line">	<span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">id</span>&gt;</span>nexus-aliyun<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">name</span>&gt;</span>Nexus aliyun<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">		<span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>*<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span>        </span><br><span class="line">	<span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">mirrors</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="02-Maven-配置本地仓库路径"><a href="#02-Maven-配置本地仓库路径" class="headerlink" title="02.Maven 配置本地仓库路径"></a>02.Maven 配置本地仓库路径</h2><p>找到 <code>$MAVEN_HOME/conf/settings.xml</code> 文件中的 <code>localRepository</code> 标签，将注释打开，并配置本地仓库路径，示例如下：</p>
+<figure class="highlight xml"><table><tr><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">localRepository</span>&gt;</span>D:\repository<span class="tag">&lt;/<span class="name">localRepository</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="03-Maven-编译时跳过-test"><a href="#03-Maven-编译时跳过-test" class="headerlink" title="03.Maven 编译时跳过 test"></a>03.Maven 编译时跳过 test</h2><p>跳过 test 的执行，但会编译：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mvn clean install -DskipTests</span><br></pre></td></tr></table></figure>
+
+<p>跳过 test 编译：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mvn clean install -Dmaven.test.skip=true</span><br></pre></td></tr></table></figure>
+
+<h2 id="04-Maven-断点续编"><a href="#04-Maven-断点续编" class="headerlink" title="04.Maven 断点续编"></a>04.Maven 断点续编</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mvn &lt;goals&gt; -rf :&lt;moduleName&gt;</span><br></pre></td></tr></table></figure>
+
+<h2 id="05-Maven-离线安装依赖"><a href="#05-Maven-离线安装依赖" class="headerlink" title="05.Maven 离线安装依赖"></a>05.Maven 离线安装依赖</h2><p>在 shell 中执行如下命令来离线安装依赖包：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mvn install:install-file -DgroupId=io.confluent -DartifactId=kafka-schema-registry-client -Dversion=3.3.1 -Dpackaging=jar -Dfile=C:\Users\Leo\Downloads\kafka-schema-registry-client-3.3.1.jar</span><br></pre></td></tr></table></figure>
+
+<p>如果需要指定 classifier，可执行下面命令（需要注意 classifier 的位置，原因可参考《<a href="https://www.cnblogs.com/lnlvinso/p/10111328.html">Maven的classifier作用</a>》）：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">mvn install:install-file -DgroupId=org.apache.flink -DartifactId=flink-table-planner-blink_2.11 -Dversion=1.12-SNAPSHOT -Dclassifier=tests -Dpackaging=jar -Dfile=C:\Users\zhouli16\Downloads\flink-table-planner-blink_2.11-1.12-20200706.040013-54-tests.jar</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>问题：在 powershell 中执行会失败</p>
+<p>解决：使用 CMD 来执行，或者给参数加上引号，如 <code>-DgroupId=io.confluent</code> 修改为 <code>-D&quot;groupId=io.confluent&quot;</code></p>
+</blockquote>
+<blockquote>
+<p>问题：通过离线方式安装依赖包时，maven-shade-plugin 无法将依赖的依赖一起打入 jar 包</p>
+<p>解决：执行 <code>install:install-file</code> 时，使用 <code>-DpomFile=xxx</code> 来指定依赖的 pom 文件</p>
+</blockquote>
+]]></content>
+      <categories>
+        <category>tool</category>
+      </categories>
+      <tags>
+        <tag>maven</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>QTTabBar 安装使用</title>
     <url>/2021/07/01/tool/QTTabBar%20%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
