@@ -13,10 +13,10 @@
 <h2 id="03-补充"><a href="#03-补充" class="headerlink" title="03.补充"></a>03.补充</h2><p><a href="https://issues.apache.org/jira/browse/FLINK-18212">FLINK-18212</a> 已经提出并解决了该问题</p>
 ]]></content>
       <categories>
-        <category>Flink</category>
+        <category>flink</category>
       </categories>
       <tags>
-        <tag>Flink</tag>
+        <tag>flink</tag>
       </tags>
   </entry>
   <entry>
@@ -61,10 +61,10 @@
 </ul>
 ]]></content>
       <categories>
-        <category>Flink</category>
+        <category>flink</category>
       </categories>
       <tags>
-        <tag>Flink</tag>
+        <tag>flink</tag>
       </tags>
   </entry>
   <entry>
@@ -95,10 +95,10 @@
 </ul>
 ]]></content>
       <categories>
-        <category>Flink</category>
+        <category>flink</category>
       </categories>
       <tags>
-        <tag>Flink</tag>
+        <tag>flink</tag>
       </tags>
   </entry>
   <entry>
@@ -156,10 +156,31 @@
 <h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>用户算子的执行过程，其实就是创建 <code>Transformation</code> 的过程，这些 <code>Transformation</code> 记录在 <code>StreamExecutionEnvironment</code> 中，后续将基于此来创建 <code>StreamGraph</code>。</p>
 ]]></content>
       <categories>
-        <category>Flink</category>
+        <category>flink</category>
       </categories>
       <tags>
-        <tag>Flink</tag>
+        <tag>flink</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>QTTabBar 安装使用</title>
+    <url>/2021/07/01/os/QTTabBar%20%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/</url>
+    <content><![CDATA[<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
+<span id="more"></span>
+
+<h2 id="前置条件"><a href="#前置条件" class="headerlink" title="前置条件"></a>前置条件</h2><p>需要安装 .net3.5，win10 安装 .net3.5 的方法可参考 <a href="https://jingyan.baidu.com/article/455a9950dbe21de167277823.html">解决win10系统无法安装.NET Framework 3.5</a>。</p>
+<h2 id="下载安装"><a href="#下载安装" class="headerlink" title="下载安装"></a>下载安装</h2><p>国内开发者在 Github 上维护了一个 <a href="https://github.com/indiff/qttabbar">QTTabBar</a> 的汉化版本，下载安装即可，安装过程比较慢，耐心等待即可。</p>
+<h2 id="相关配置"><a href="#相关配置" class="headerlink" title="相关配置"></a>相关配置</h2><p>QTTabBar 启用后，资源管理器里面有一些网格线，看着不舒服，去掉这些网格线的方法如下：</p>
+<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/remove_grid_lines_caused_by_qttabbar.png"></p>
+<p>在标签栏有一个蓝色的加号按钮，看着也不习惯，去掉的方法如下：</p>
+<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/remove_blue_button_on_tab_bar.png"></p>
+<h2 id="其他问题"><a href="#其他问题" class="headerlink" title="其他问题"></a>其他问题</h2><p>没有安装 .net3.5 的机器安装 QTTabBar 后，在启用时会闪退。此时，并不是说把 .net3.5 装上，QTTabBar 就能用了，需要先卸载 QTTabBar 并删除一些注册信息，然后再重新安装 QTTabBar，具体的操作可参考 <a href="https://gitee.com/qwop/qttabbar/attach_files/581136/download">打开选项闪退的解决方案修订版</a>。</p>
+]]></content>
+      <categories>
+        <category>os</category>
+      </categories>
+      <tags>
+        <tag>windows</tag>
       </tags>
   </entry>
   <entry>
