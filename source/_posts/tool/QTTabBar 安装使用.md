@@ -4,7 +4,7 @@ date: 2021-07-01 22:00:00
 updated: 2022-06-09 22:00:00
 tags: ["windows"]
 categories:
-  - os
+  - tool
 ---
 
 ![](https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png)

@@ -4,7 +4,7 @@ date: 2022-06-06 22:00:00
 updated: 2022-06-08 22:00:00
 tags: ["hexo"]
 categories:
-  - github
+  - tool
 ---
 
 ![](https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png)
