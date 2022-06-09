@@ -2,7 +2,7 @@
 title: QTTabBar 安装使用
 date: 2021-07-01 22:00:00
 updated: 2022-06-09 22:00:00
-tags: ["windows"]
+tags: ["qttabar"]
 categories:
   - tool
 ---
