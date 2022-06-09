@@ -343,6 +343,29 @@
       </tags>
   </entry>
   <entry>
+    <title>Git for windows 中文乱码解决办法</title>
+    <url>/2016/03/11/tool/Git%20for%20windows%20%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</url>
+    <content><![CDATA[<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
+<span id="more"></span>
+
+<h2 id="01-问题"><a href="#01-问题" class="headerlink" title="01.问题"></a>01.问题</h2><p><code>git status</code> 时显示乱码：</p>
+<figure class="highlight plaintext"><table><tr><td class="code"><pre><span class="line">\316\304\261\276\316\304\265\265.txt</span><br></pre></td></tr></table></figure>
+
+<h2 id="02-解决"><a href="#02-解决" class="headerlink" title="02.解决"></a>02.解决</h2><p>执行如下命令：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">git config --global core.quotepath <span class="literal">false</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="03-参考"><a href="#03-参考" class="headerlink" title="03.参考"></a>03.参考</h2><ul>
+<li><a href="https://www.cnblogs.com/ayseeing/p/4203679.html">Git for windows 中文乱码解决方案</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>tool</category>
+      </categories>
+      <tags>
+        <tag>git</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Hexo 的 Next 主题美化</title>
     <url>/2022/06/06/tool/Hexo%20%E7%9A%84%20Next%20%E4%B8%BB%E9%A2%98%E7%BE%8E%E5%8C%96/</url>
     <content><![CDATA[<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
