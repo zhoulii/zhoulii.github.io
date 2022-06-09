@@ -23,24 +23,21 @@
   </script>
 
   <meta property="og:type" content="article">
-<meta property="og:title" content="基于 Hexo + Github Pages + Github Actions 搭建个人博客">
-<meta property="og:url" content="http://example.com/2022/06/06/tool/%E5%9F%BA%E4%BA%8E%20Hexo%20+%20Github%20Pages%20+%20Github%20Actions%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/index.html">
+<meta property="og:title" content="Flink SQL 如何实现一行转多行">
+<meta property="og:url" content="http://example.com/2020/04/12/flink/Flink%20SQL%20%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E8%A1%8C%E8%BD%AC%E5%A4%9A%E8%A1%8C/index.html">
 <meta property="og:site_name" content="Leo&#39;s Blog">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/github-actions-hexo.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/gh-pages-branch.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/github-pages-hexo.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/hello-world-hexo.png">
-<meta property="article:published_time" content="2022-06-06T22:00:00.000Z">
-<meta property="article:modified_time" content="2022-06-08T22:00:00.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/flink-udtf-1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/flink-udtf-2.png">
+<meta property="article:published_time" content="2020-04-12T22:00:00.000Z">
+<meta property="article:modified_time" content="2022-06-09T22:00:00.000Z">
 <meta property="article:author" content="Leo">
-<meta property="article:tag" content="hexo">
-<meta property="article:tag" content="github">
+<meta property="article:tag" content="flink">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png">
 
-<link rel="canonical" href="http://example.com/2022/06/06/tool/%E5%9F%BA%E4%BA%8E%20Hexo%20+%20Github%20Pages%20+%20Github%20Actions%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
+<link rel="canonical" href="http://example.com/2020/04/12/flink/Flink%20SQL%20%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E8%A1%8C%E8%BD%AC%E5%A4%9A%E8%A1%8C/">
 
 
 <script id="page-configurations">
@@ -53,7 +50,7 @@
   };
 </script>
 
-  <title>基于 Hexo + Github Pages + Github Actions 搭建个人博客 | Leo's Blog</title>
+  <title>Flink SQL 如何实现一行转多行 | Leo's Blog</title>
   
 
 
@@ -202,7 +199,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/06/06/tool/%E5%9F%BA%E4%BA%8E%20Hexo%20+%20Github%20Pages%20+%20Github%20Actions%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/04/12/flink/Flink%20SQL%20%E5%A6%82%E4%BD%95%E5%AE%9E%E7%8E%B0%E4%B8%80%E8%A1%8C%E8%BD%AC%E5%A4%9A%E8%A1%8C/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/gakki.png">
@@ -215,7 +212,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          基于 Hexo + Github Pages + Github Actions 搭建个人博客
+          Flink SQL 如何实现一行转多行
         </h1>
 
         <div class="post-meta">
@@ -225,14 +222,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2022-06-06 22:00:00" itemprop="dateCreated datePublished" datetime="2022-06-06T22:00:00+00:00">2022-06-06</time>
+              <time title="创建时间：2020-04-12 22:00:00" itemprop="dateCreated datePublished" datetime="2020-04-12T22:00:00+00:00">2020-04-12</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-06-08 22:00:00" itemprop="dateModified" datetime="2022-06-08T22:00:00+00:00">2022-06-08</time>
+                <time title="修改时间：2022-06-09 22:00:00" itemprop="dateModified" datetime="2022-06-09T22:00:00+00:00">2022-06-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -240,7 +237,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/tool/" itemprop="url" rel="index"><span itemprop="name">tool</span></a>
+                  <a href="/categories/flink/" itemprop="url" rel="index"><span itemprop="name">flink</span></a>
                 </span>
             </span>
 
@@ -258,29 +255,16 @@
         <p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
 <span id="more"></span>
 
-<h2 id="01-初始化仓库"><a href="#01-初始化仓库" class="headerlink" title="01.初始化仓库"></a>01.初始化仓库</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">npm install hexo-cli -g</span><br><span class="line">hexo init zhoulii.github.io</span><br><span class="line">cd zhoulii.github.io</span><br><span class="line">git init</span><br><span class="line">git add .</span><br><span class="line">git commit -m &quot;initialize zhoulii.github.io&quot;</span><br><span class="line">git remote add origin https://github.com/zhoulii/zhoulii.github.io.git</span><br><span class="line">git push origin master</span><br></pre></td></tr></table></figure>
+<h2 id="01-问题描述"><a href="#01-问题描述" class="headerlink" title="01.问题描述"></a>01.问题描述</h2><p>用户的数据记录中包含多个字段，并且某个字段的内容是一个结构复杂的 <code>json</code>，现在要提取 <code>json</code> 中的数据，与其他字段组成一条或多条记录输出。</p>
+<h2 id="02-如何解决"><a href="#02-如何解决" class="headerlink" title="02.如何解决"></a>02.如何解决</h2><p>Flink 中的 UDTF 可以实现一行数据到多行数据的转换，下面以《<a target="_blank" rel="noopener" href="https://baijiahao.baidu.com/s?id=1651693041743099274&wfr=spider&for=pc">Flink SQL 中TableFunction使用分析</a>》中的示例来演示下如何自定义 UDTF。假设输入数据格式如下：</p>
+<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/flink-udtf-1.png"></p>
+<p>要求通过 flink sql 输出如下格式数据：</p>
+<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/flink-udtf-2.png"></p>
+<p>此时 UDTF 的实现为：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">class</span> <span class="title class_">MyUDTF</span> <span class="keyword">extends</span> <span class="title class_">TableFunction</span>&lt;Row&gt; &#123;</span><br><span class="line">    <span class="meta">@FunctionHint(output = @DataTypeHint(&quot;Row&lt;type String, value String&gt;&quot;))</span></span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">void</span> <span class="title function_">eval</span><span class="params">(String s)</span> &#123;</span><br><span class="line">        <span class="keyword">final</span> <span class="type">JSONArray</span> <span class="variable">jsonArray</span> <span class="operator">=</span> JSONArray.parseArray(s);</span><br><span class="line">        <span class="keyword">for</span>(<span class="type">int</span> <span class="variable">i</span> <span class="operator">=</span> <span class="number">0</span>; i &lt; jsonArray.size(); i++) &#123;</span><br><span class="line">            <span class="keyword">final</span> <span class="type">JSONObject</span> <span class="variable">jsonObject</span> <span class="operator">=</span> jsonArray.getJSONObject(i);</span><br><span class="line">            <span class="keyword">final</span> <span class="type">String</span> <span class="variable">type</span> <span class="operator">=</span> jsonObject.getString(<span class="string">&quot;type&quot;</span>);</span><br><span class="line">            <span class="keyword">final</span> <span class="type">String</span> <span class="variable">value</span> <span class="operator">=</span> jsonObject.getString(<span class="string">&quot;value&quot;</span>);</span><br><span class="line">            collect(Row.of(type, value));</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h2 id="02-配置-Github-Actions"><a href="#02-配置-Github-Actions" class="headerlink" title="02.配置 Github Actions"></a>02.配置 Github Actions</h2><p>在仓库中创建 <code>.github/workflows/pages.yml</code>，具体内容如下：</p>
-<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">name: deploy zhoulii.github.io  </span><br><span class="line">  </span><br><span class="line">on:  </span><br><span class="line">  push:  </span><br><span class="line">    branches:  </span><br><span class="line">      - master</span><br><span class="line">  </span><br><span class="line">jobs:  </span><br><span class="line">  pages:  </span><br><span class="line">    runs-on: ubuntu-latest  </span><br><span class="line">    steps:  </span><br><span class="line">      - uses: actions/checkout@v2  </span><br><span class="line">      - name: Use Node.js 16.x  </span><br><span class="line">        uses: actions/setup-node@v2  </span><br><span class="line">        with:  </span><br><span class="line">          node-version: &#x27;16&#x27;  </span><br><span class="line">      - name: Cache NPM dependencies  </span><br><span class="line">        uses: actions/cache@v2  </span><br><span class="line">        with:  </span><br><span class="line">          path: node_modules  </span><br><span class="line">          key: $&#123;&#123; runner.OS &#125;&#125;-npm-cache  </span><br><span class="line">          restore-keys: |  </span><br><span class="line">            $&#123;&#123; runner.OS &#125;&#125;-npm-cache  </span><br><span class="line">      - name: Install Dependencies  </span><br><span class="line">        run: npm install  </span><br><span class="line">      - name: Build  </span><br><span class="line">        run: npm run build  </span><br><span class="line">      - name: Deploy  </span><br><span class="line">        uses: peaceiris/actions-gh-pages@v3  </span><br><span class="line">        with:  </span><br><span class="line">          github_token: $&#123;&#123; secrets.GITHUB_TOKEN &#125;&#125;  </span><br><span class="line">          publish_dir: ./public</span><br></pre></td></tr></table></figure>
-<p>需要注意两点：</p>
-<ul>
-<li><code>node</code> 版本需要与本地机器一致（可使用 <code>node --version</code> 查看）</li>
-<li>配置中的变量不需要手动指定</li>
-</ul>
-<p>将 <code>.github/workflows/pages.yml</code> 同步到远程仓库，点击仓库主页的 <code>Actions</code> 标签，可以看到 <code>workflow</code> 的执行情况。</p>
-<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/github-actions-hexo.png"></p>
-<p><code>workflow</code> 执行完成后，仓库会多出一个名为 <code>gh-pages</code> 的分支，<code>Hexo</code> 生成的静态网站文件即在该分支下。</p>
-<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/gh-pages-branch.png"></p>
-<h2 id="03-配置-Github-Pages"><a href="#03-配置-Github-Pages" class="headerlink" title="03.配置 Github Pages"></a>03.配置 Github Pages</h2><p><code>Hexo</code> 生成的静态网站文件在  <code>gh-pages</code>  分支下，接下来配置 <code>Github Pages</code> 从 <code>gh-pages</code>  分支构建站点：</p>
-<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/github-pages-hexo.png"></p>
-<p>配置完成后，稍等个一两分钟，网站就可以访问了，网站首页如下：</p>
-<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/hello-world-hexo.png"></p>
-<h2 id="04-参考资料"><a href="#04-参考资料" class="headerlink" title="04.参考资料"></a>04.参考资料</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://hexo.io/docs/github-pages.html">GitHub Pages | Hexo</a></li>
-<li><a target="_blank" rel="noopener" href="https://github.com/peaceiris/actions-gh-pages">peaceiris&#x2F;actions-gh-pages: GitHub Actions for GitHub Pages</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/eadeddb792c5">博客之旅：从 Jekyll 到 Hexo</a></li>
-</ul>
-
+<p>下面给出了这个 UDTF 的测试用例：</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title function_">main</span><span class="params">(String[] args)</span> &#123;</span><br><span class="line">    <span class="type">StreamExecutionEnvironment</span> <span class="variable">env</span> <span class="operator">=</span> StreamExecutionEnvironment.getExecutionEnvironment();</span><br><span class="line"></span><br><span class="line">    <span class="type">EnvironmentSettings</span> <span class="variable">settings</span> <span class="operator">=</span> EnvironmentSettings</span><br><span class="line">            .newInstance()</span><br><span class="line">            .inStreamingMode()</span><br><span class="line">            .useBlinkPlanner()</span><br><span class="line">            .build();</span><br><span class="line"></span><br><span class="line">    <span class="type">StreamTableEnvironment</span> <span class="variable">tEnv</span> <span class="operator">=</span> StreamTableEnvironment.create(env, settings);</span><br><span class="line"></span><br><span class="line">    List&lt;Row&gt; sourceData = Collections.singletonList(Row.of(</span><br><span class="line">            <span class="string">&quot;dev01&quot;</span>,</span><br><span class="line">            <span class="string">&quot;1574944573000&quot;</span>,</span><br><span class="line">            <span class="string">&quot;[&#123;\&quot;type\&quot;:\&quot;temperature\&quot;,\&quot;value\&quot;:\&quot;10\&quot;&#125;,&quot;</span> +</span><br><span class="line">                    <span class="string">&quot;&#123;\&quot;type\&quot;:\&quot;battery\&quot;,\&quot;value\&quot;:\&quot;1\&quot;&#125;]&quot;</span>));</span><br><span class="line"></span><br><span class="line">    DataStreamSource&lt;Row&gt; rowDataStreamSource = env.fromCollection(sourceData);</span><br><span class="line">    <span class="type">Table</span> <span class="variable">table</span> <span class="operator">=</span> tEnv.fromDataStream(rowDataStreamSource, $(<span class="string">&quot;devid&quot;</span>), $(<span class="string">&quot;time&quot;</span>), $(<span class="string">&quot;data&quot;</span>));</span><br><span class="line">    tEnv.createTemporaryView(<span class="string">&quot;source&quot;</span>, table);</span><br><span class="line">    tEnv.createTemporarySystemFunction(<span class="string">&quot;my_udtf&quot;</span>, MyUDTF.class);</span><br><span class="line"></span><br><span class="line">    <span class="type">TableResult</span> <span class="variable">tableResult</span> <span class="operator">=</span> tEnv.executeSql(<span class="string">&quot;select `devid`, `time`, `type`, `value` &quot;</span> +</span><br><span class="line">            <span class="string">&quot;from source, lateral table(my_udtf(data)) as t(`type`,`value`)&quot;</span>);</span><br><span class="line">    tableResult.print();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
     </div>
 
     
@@ -289,8 +273,7 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/hexo/" rel="tag"># hexo</a>
-              <a href="/tags/github/" rel="tag"># github</a>
+              <a href="/tags/flink/" rel="tag"># flink</a>
           </div>
 
         
@@ -299,12 +282,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2021/07/01/tool/QTTabBar%20%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/" rel="prev" title="QTTabBar 安装使用">
-      <i class="fa fa-chevron-left"></i> QTTabBar 安装使用
+    <a href="/2018/05/18/flink/Flink%20%E6%BA%90%E7%A0%81%E6%B5%85%E6%9E%90%20001%EF%BC%9A%E7%AE%97%E5%AD%90%E5%86%85%E9%83%A8%E5%81%9A%E4%BA%86%E4%BB%80%E4%B9%88/" rel="prev" title="Flink 源码浅析 001：算子内部做了什么">
+      <i class="fa fa-chevron-left"></i> Flink 源码浅析 001：算子内部做了什么
     </a></div>
       <div class="post-nav-item">
-    <a href="/2022/06/06/tool/%E5%9F%BA%E4%BA%8E%20Github%20+%20PicGo%20%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%9B%BE%E5%BA%8A/" rel="next" title="基于 Github + PicGo 搭建个人图床">
-      基于 Github + PicGo 搭建个人图床 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/05/11/flink/Flink%20SQL%20%E4%B8%AD%E6%97%B6%E9%97%B4%E6%88%B3%E7%9A%84%E4%BD%BF%E7%94%A8/" rel="next" title="Flink 1.11 新特性：Application 部署模式">
+      Flink 1.11 新特性：Application 部署模式 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -364,7 +347,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#01-%E5%88%9D%E5%A7%8B%E5%8C%96%E4%BB%93%E5%BA%93"><span class="nav-text">01.初始化仓库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#02-%E9%85%8D%E7%BD%AE-Github-Actions"><span class="nav-text">02.配置 Github Actions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#03-%E9%85%8D%E7%BD%AE-Github-Pages"><span class="nav-text">03.配置 Github Pages</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#04-%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-text">04.参考资料</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#01-%E9%97%AE%E9%A2%98%E6%8F%8F%E8%BF%B0"><span class="nav-text">01.问题描述</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#02-%E5%A6%82%E4%BD%95%E8%A7%A3%E5%86%B3"><span class="nav-text">02.如何解决</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
