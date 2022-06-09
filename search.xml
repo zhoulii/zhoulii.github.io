@@ -637,6 +637,29 @@
       </tags>
   </entry>
   <entry>
+    <title>MySQL 常用配置总结</title>
+    <url>/2016/04/07/tool/MySQL%20%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE%E6%80%BB%E7%BB%93/</url>
+    <content><![CDATA[<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
+<span id="more"></span>
+
+<h2 id="01-解除-MySQL-对简单密码的限制"><a href="#01-解除-MySQL-对简单密码的限制" class="headerlink" title="01.解除 MySQL 对简单密码的限制"></a>01.解除 MySQL 对简单密码的限制</h2><p>在 <code>/etc/my.cnf</code> 的 <i><font color=red>[mysqld]</font></i> 标签下添加如下配置，然后重启 MySQL 服务即可：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">plugin-load=validate_password.so </span><br><span class="line">validate-password=OFF</span><br></pre></td></tr></table></figure>
+
+<h2 id="02-MySQL-5-7-开启-binlog"><a href="#02-MySQL-5-7-开启-binlog" class="headerlink" title="02.MySQL 5.7 开启 binlog"></a>02.MySQL 5.7 开启 binlog</h2><p>在 <code>/etc/my.cnf</code> 的 <i><font color=red>[mysqld]</font></i> 标签下添加如下配置，然后重启 MySQL 服务即可：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">server_id=1			# 配置 MySQL Replication 时需要定义</span><br><span class="line">log_bin=mysql-bin	# 开启 binlog</span><br><span class="line">binlog_format=ROW 	# 选择 ROW 模式</span><br><span class="line">expire_logs_days=30	# 过期时间</span><br></pre></td></tr></table></figure>
+
+<h2 id="03-参考资料"><a href="#03-参考资料" class="headerlink" title="03.参考资料"></a>03.参考资料</h2><ul>
+<li><a href="https://www.cnblogs.com/zhylioooo/p/11084489.html">yum 安装指定版本 MySQL</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>tool</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>QTTabBar 安装使用</title>
     <url>/2021/07/01/tool/QTTabBar%20%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8/</url>
     <content><![CDATA[<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
@@ -693,6 +716,115 @@
       </categories>
       <tags>
         <tag>ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>tar 命令实现分卷压缩</title>
+    <url>/2020/08/14/tool/tar%20%E5%91%BD%E4%BB%A4%E5%AE%9E%E7%8E%B0%E5%88%86%E5%8D%B7%E5%8E%8B%E7%BC%A9/</url>
+    <content><![CDATA[<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
+<span id="more"></span>
+
+<h2 id="01-压缩"><a href="#01-压缩" class="headerlink" title="01.压缩"></a>01.压缩</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">tar -czvf - jdk1.8.0_221/ | split -b 100m - jdk1.8.0_221.tar.gz</span><br></pre></td></tr></table></figure>
+
+<h2 id="02-解压"><a href="#02-解压" class="headerlink" title="02.解压"></a>02.解压</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">cat jdk1.8.0_221.tar.gza* | tar -xzv</span><br></pre></td></tr></table></figure>
+]]></content>
+      <categories>
+        <category>tool</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>windows 文本转 linux 文本</title>
+    <url>/2015/04/07/tool/windows%20%E6%96%87%E6%9C%AC%E8%BD%AC%20linux%20%E6%96%87%E6%9C%AC/</url>
+    <content><![CDATA[<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
+<span id="more"></span>
+
+<h2 id="01-安装-dos2unix"><a href="#01-安装-dos2unix" class="headerlink" title="01.安装 dos2unix"></a>01.安装 dos2unix</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum install -y dos2unix</span><br></pre></td></tr></table></figure>
+
+<h2 id="02-执行转换"><a href="#02-执行转换" class="headerlink" title="02.执行转换"></a>02.执行转换</h2><figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">dos2unix filename|directory</span><br></pre></td></tr></table></figure>
+
+]]></content>
+      <categories>
+        <category>tool</category>
+      </categories>
+      <tags>
+        <tag>linux</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>yum 方式安装 MySQL</title>
+    <url>/2016/04/07/tool/yum%20%E6%96%B9%E5%BC%8F%E5%AE%89%E8%A3%85%20MySQL/</url>
+    <content><![CDATA[<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
+<span id="more"></span>
+
+<h2 id="01-环境说明"><a href="#01-环境说明" class="headerlink" title="01.环境说明"></a>01.环境说明</h2><ul>
+<li>CentOS 7.7.1908</li>
+<li>MySQL 5.7</li>
+</ul>
+<h2 id="02-安装步骤"><a href="#02-安装步骤" class="headerlink" title="02.安装步骤"></a>02.安装步骤</h2><p>检测是否自带：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rpm -qa | grep mysql</span><br></pre></td></tr></table></figure>
+
+<p>卸载自带 mysql：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rpm -e --nodeps &lt;rpm qa|grep mysql命令查出来的包&gt;</span><br></pre></td></tr></table></figure>
+
+<p>下载 mysql 源：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">wget https://repo.mysql.com//mysql80-community-release-el7-3.noarch.rpm</span><br></pre></td></tr></table></figure>
+
+<p>安装 mysql 源：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rpm -ivh mysql80-community-release-el7-3.noarch.rpm</span><br></pre></td></tr></table></figure>
+
+<p>更新 yum 源：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum update</span><br></pre></td></tr></table></figure>
+
+<p>列出可用版本：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">yum repolist all | grep mysql</span><br></pre></td></tr></table></figure>
+
+<p>禁用 yum 源中的 mysql80：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum-config-manager --<span class="built_in">disable</span> mysql80-community</span><br></pre></td></tr></table></figure>
+
+<p>开启 yum 源中的 mysql57：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum-config-manager --<span class="built_in">enable</span> mysql57-community</span><br></pre></td></tr></table></figure>
+
+<p>验证 enable 的 mysql 版本：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum repolist all | grep mysql</span><br></pre></td></tr></table></figure>
+
+<p>再次卸载 mysql：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">rpm -e --nodeps &lt;rpm -qa|grep mysql命令查出来的包，不要删带有noarch的包&gt;</span><br></pre></td></tr></table></figure>
+
+<p>安装 mysql：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">yum install -y mysql-community-server</span><br></pre></td></tr></table></figure>
+
+<p>启动 mysql：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo systemctl start mysqld.service</span><br></pre></td></tr></table></figure>
+
+<p>检查 mysql 状态：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo systemctl status mysqld.service</span><br></pre></td></tr></table></figure>
+
+<p>设置开机自启：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo systemctl <span class="built_in">enable</span> mysqld.service</span><br></pre></td></tr></table></figure>
+
+<p>获取 ‘root‘@’localhost’ 的密码：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">sudo grep <span class="string">&#x27;temporary password&#x27;</span> /var/log/mysqld.log</span><br></pre></td></tr></table></figure>
+
+<p>连接 mysql 服务：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">mysql -uroot -p</span><br></pre></td></tr></table></figure>
+
+<p>修改 root 密码：</p>
+<figure class="highlight bash"><table><tr><td class="code"><pre><span class="line">ALTER USER <span class="string">&#x27;root&#x27;</span>@<span class="string">&#x27;localhost&#x27;</span> IDENTIFIED BY <span class="string">&#x27;MyNewPass4!&#x27;</span>;</span><br></pre></td></tr></table></figure>
+
+<h2 id="03-参考资料"><a href="#03-参考资料" class="headerlink" title="03.参考资料"></a>03.参考资料</h2><ul>
+<li><a href="https://www.runoob.com/mysql/mysql-install.html">菜鸟教程</a></li>
+<li><a href="https://dev.mysql.com/doc/mysql-yum-repo-quick-guide/en/">官方资料</a></li>
+<li><a href="https://www.cnblogs.com/zhylioooo/p/11084489.html">yum安装指定版本mysql</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>tool</category>
+      </categories>
+      <tags>
+        <tag>mysql</tag>
       </tags>
   </entry>
   <entry>
