@@ -23,20 +23,21 @@
   </script>
 
   <meta property="og:type" content="article">
-<meta property="og:title" content="Flink 使用 FTP 作为 Checkpoint 文件系统存在的问题">
-<meta property="og:url" content="http://example.com/2020/07/05/flink/Flink%20%E4%BD%BF%E7%94%A8%20FTP%20%E4%BD%9C%E4%B8%BA%20Checkpoint%20%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98/index.html">
+<meta property="og:title" content="Flink 1.11 新特性：Application 部署模式">
+<meta property="og:url" content="http://example.com/2020/10/11/flink/Flink%201.11%20%E6%96%B0%E7%89%B9%E6%80%A7%EF%BC%9AApplication%20%E9%83%A8%E7%BD%B2%E6%A8%A1%E5%BC%8F/index.html">
 <meta property="og:site_name" content="Leo&#39;s Blog">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png">
-<meta property="og:image" content="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/flink-ftp-checkpoint-failed.png">
-<meta property="article:published_time" content="2020-07-05T22:00:00.000Z">
-<meta property="article:modified_time" content="2022-06-08T22:00:00.000Z">
+<meta property="og:image" content="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/flink-application-1.png">
+<meta property="og:image" content="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/flink-application-2.png">
+<meta property="article:published_time" content="2020-10-11T22:00:00.000Z">
+<meta property="article:modified_time" content="2022-06-09T22:00:00.000Z">
 <meta property="article:author" content="Leo">
 <meta property="article:tag" content="flink">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png">
 
-<link rel="canonical" href="http://example.com/2020/07/05/flink/Flink%20%E4%BD%BF%E7%94%A8%20FTP%20%E4%BD%9C%E4%B8%BA%20Checkpoint%20%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98/">
+<link rel="canonical" href="http://example.com/2020/10/11/flink/Flink%201.11%20%E6%96%B0%E7%89%B9%E6%80%A7%EF%BC%9AApplication%20%E9%83%A8%E7%BD%B2%E6%A8%A1%E5%BC%8F/">
 
 
 <script id="page-configurations">
@@ -49,7 +50,7 @@
   };
 </script>
 
-  <title>Flink 使用 FTP 作为 Checkpoint 文件系统存在的问题 | Leo's Blog</title>
+  <title>Flink 1.11 新特性：Application 部署模式 | Leo's Blog</title>
   
 
 
@@ -198,7 +199,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2020/07/05/flink/Flink%20%E4%BD%BF%E7%94%A8%20FTP%20%E4%BD%9C%E4%B8%BA%20Checkpoint%20%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2020/10/11/flink/Flink%201.11%20%E6%96%B0%E7%89%B9%E6%80%A7%EF%BC%9AApplication%20%E9%83%A8%E7%BD%B2%E6%A8%A1%E5%BC%8F/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/gakki.png">
@@ -211,7 +212,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          Flink 使用 FTP 作为 Checkpoint 文件系统存在的问题
+          Flink 1.11 新特性：Application 部署模式
         </h1>
 
         <div class="post-meta">
@@ -221,14 +222,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2020-07-05 22:00:00" itemprop="dateCreated datePublished" datetime="2020-07-05T22:00:00+00:00">2020-07-05</time>
+              <time title="创建时间：2020-10-11 22:00:00" itemprop="dateCreated datePublished" datetime="2020-10-11T22:00:00+00:00">2020-10-11</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-06-08 22:00:00" itemprop="dateModified" datetime="2022-06-08T22:00:00+00:00">2022-06-08</time>
+                <time title="修改时间：2022-06-09 22:00:00" itemprop="dateModified" datetime="2022-06-09T22:00:00+00:00">2022-06-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -254,25 +255,40 @@
         <p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
 <span id="more"></span>
 
-<h2 id="01-背景说明"><a href="#01-背景说明" class="headerlink" title="01.背景说明"></a>01.背景说明</h2><a href="/2020/06/29/flink/Flink%20%E4%BD%BF%E7%94%A8%20FTP%20%E4%BD%9C%E4%B8%BA%20Checkpoint%20%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/" title="Flink 使用 FTP 作为 Checkpoint 文件系统">Flink 使用 FTP 作为 Checkpoint 文件系统</a> 介绍了如何让 Flink Checkpoint 后端支持 FTP，并实现了此项功能。项目上线后，FTP 作为 Flink Checkpoint 状态后端可以正常工作，但项目运行一段时间后，偶尔在做 Checkpoint 时会出现端口被占用异常，从而出现 Checkpoint 失败，作业重启的问题。
+<p>Flink 1.11 新增了一种新的应用部署模式：application mode，下面我们来了解下这种部署模式解决了什么问题以及是如何实现的。</p>
+<h2 id="01-当前的应用部署模式"><a href="#01-当前的应用部署模式" class="headerlink" title="01.当前的应用部署模式"></a>01.当前的应用部署模式</h2><p>在 1.11 版本之前，Flink 支持两种部署模式：session 和 per-job，它们的区别在于集群的生命周期和应用的资源隔离程度不同。</p>
+<p><strong>session mode</strong></p>
+<p>session 模式假定已经存在了一个 Flink 集群，所有的作业都提交到这个集群上，作业间共用并竞争这个集群的资源。在 session 模式下，用户无需为每个作业分配集群资源，但作业共用 jobmanager 和 taskmanager，如果一个作业导致 taskmanager 宕机，那么这个 taskmanager 上承载的作业都会失败。而大规模的作业失败意味着大规模的作业恢复，作业恢复过程需要访问文件系统，这可能导致文件系统的压力过大。此外，jobmanager 负责记录跟踪作业的状态，启动的作业越多，jobmanager 的负载也会越大。</p>
+<p>除了上面提到的问题，session 模式还有一个不易察觉的缺点，那就是查看作业日志较为不方便，究其原因，同样是共用 taskmanager 引起的。</p>
+<p>虽然问题较多，但 session 模式还是有其适用用场景的。得益于一个既存集群的优势，session 模式下应用的启动速度较快，所以 Session 模式一般用来部署那些对延迟非常敏感但运行时长较短的作业。</p>
+<p><strong>per-job mode</strong></p>
+<p>per-job 模式下，会使用集群管理框架（如 yarn、kubernetes）为每个作业创建一个独享的 Flink 集群，当作业运行结束，集群资源会被释放。显然，per-job 模式下作业启动的延时会比较大，但是由于作业资源完全隔离，一个作业的失败不会影响其他作业的运行。此外，per-job 模式下，作业不会共享 jobmanager，也就不会发生 session 模式中因作业过多导致 jobmanager 负载大的问题。</p>
+<p>结合上述的特点，per-job 模式通常用来部署长时运行且对启动延迟不敏感的作业。</p>
+<h2 id="02-部署模式存在的问题"><a href="#02-部署模式存在的问题" class="headerlink" title="02.部署模式存在的问题"></a>02.部署模式存在的问题</h2><p>无论是提交 session 模式还是 per-job 模式的应用，Flink 应用的 main 方法都是在客户端执行，主要包含如下两个过程：1）将作业翻译成 JobGraph；2）将 JobGraph 及依赖上传到集群中。如果应用逻辑很复杂，步骤 1 则会消耗更多的 CPU 及内存，如果依赖较大，步骤 2 则会消耗更高的带宽。所以，如果多个用户、在同一节点（一般来讲，在生产环境中，是会有一个节点作为应用提交的统一入口）同时提交 Flink 应用，这个提交应用的节点很可能成为瓶颈。下图中的 Deployer 表示应用提交节点，三角形表示提交作业时客户端需要做的工作。</p>
+<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/flink-application-1.png"></p>
+<p>为了减轻 Deployer 的负载压力，Flink 社区在 per-job 模式的基础上实现了 application mode。</p>
+<h2 id="03-Application-Mode-实现原理"><a href="#03-Application-Mode-实现原理" class="headerlink" title="03.Application Mode 实现原理"></a>03.Application Mode 实现原理</h2><p>如下图所示，application mode 将客户端的工作负载转移到了 jobmanager 中（即在 jobmanager 中执行应用 main 方法），客户端仅负责发送作业提交请求，工作负载很轻，即使大量应用同时提交，也不会给 Deployer 造成太大的压力。并且，application mode 会为每一个 application 单独创建一个 Flink 集群，这意味着每一个 application 独享一个 jobmanager，从而 jobmanager 也不会因为承担了部分客户端的工作而造成负载过大。</p>
+<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/flink-application-2.png"></p>
+<p>和 per-job mode 相比，application mode 允许一个 application 中包含多个 job，job 的执行顺序和启动 job 的命令有关。当使用阻塞式的 execute 命令来提交 job 时，job 是顺序执行的，下一个 job 会在上一个 job 执行完成之后才会提交。当使用非阻塞式的 executeAsync 命令来提交 job 时，下一个 job 在上一个 job 提交之后会立即提交，无需等待上个 job 的完成，也就是说多个 job 可以同时运行。</p>
+<p><strong>需要注意一点</strong>：由于 application mode 下，应用的 main 方法在 jobmanager 中执行，所以要保证用户代码访问的外部资源在 jobmanager 中是可以访问到的。 例如，当用户代码使用 registerCachedFile 方法来注册资源时，这个资源要能被 jobmanager 访问。</p>
+<h2 id="04-进一步减少网络资源"><a href="#04-进一步减少网络资源" class="headerlink" title="04.进一步减少网络资源"></a>04.进一步减少网络资源</h2><p>以 application mode on yarn 为例，当提交一个 application mode 的应用时，客户端不仅需要传输用户 jar 到 jobmanager，还需要将 Flink 的二进制包上传到 Yarn ，用于启动 Flink 集群。对客户端来说，这两个传输工作也要占用相当的带宽资源。并且，每次提交应用都上传一份相同的 Flink 二进制包到 Yarn 上不仅浪费带宽，也浪费存储空间，Flink 1.11 正是从由此出发，对 Flink on Yarn 做了如下两点优化：</p>
+<ol>
+<li>通过一个远程路径来指定启动 Flink 集群所需的二进制包；</li>
+<li>通过一个远程路径来指定应用 jar；</li>
+</ol>
+<p>通过第一个优化点，提交应用时就不必重复上传 Flink 依赖了 ，直接从远程路径拉去即可。并且，由于 yarn 的缓存机制，如果之前一个 nodemanager 上启动过 Flink 进程，当再次启动时，Flink 依赖可直接从本地缓存中读取，进一步加快了应用的提交过程。</p>
+<p>需要知道的是，上述两点优化并不只针对于 application mode on yarn，而是适用于 Flink on Yarn 中的所有应用提交模式。</p>
+<h2 id="05-Application-Mode-on-Yarn-示例"><a href="#05-Application-Mode-on-Yarn-示例" class="headerlink" title="05.Application Mode on Yarn 示例"></a>05.Application Mode on Yarn 示例</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">./bin/flink run-application -t yarn-application \</span><br><span class="line">-Djobmanager.memory.process.size=2048m \</span><br><span class="line">-Dtaskmanager.memory.process.size=4096m \</span><br><span class="line">-Dyarn.provided.lib.dirs=&quot;hdfs://myhdfs/remote-flink-dist-dir&quot; \</span><br><span class="line">hdfs://myhdfs/jars/MyApplication.jar</span><br></pre></td></tr></table></figure>
 
-<h2 id="02-问题排查"><a href="#02-问题排查" class="headerlink" title="02.问题排查"></a>02.问题排查</h2><p>首先看下异常发生的位置：</p>
-<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/flink-ftp-checkpoint-failed.png"></p>
-<p>下面是我的排查思路：</p>
-<ul>
-<li>检查机器的端口，发现大量端口处于 time_wait 状态，推测短链接建立太多，机器端口被占用完；</li>
-<li>排查代码，<code>_serverSocketFactory_.createServerSocket</code> 绑定的端口是 0，意思是由操作系统分配可用端口，无端口可分配也会抛出端口被占用异常，进一步验证上面猜测；</li>
-</ul>
-<p>分析出机器端口被占用完，接下来就是找出 FTPClient 中为什么会有大量端口没被释放的问题了。还是回到 <code>_openDataConnection_</code> 方法，在 FTPClient 与 FTP 进行数据交互时，每个数据交互操作都需要调用这个方法，该方法会返回一个与服务端进行数据传输的 Socket，猜想如果这些 Socket 没被关闭，那么就会不断有端口被占用。而跟踪代码可以发现，FTPClient 在用完这些 Socket 后，都及时调用了其 close 方法去关闭连接，所以上面的猜想又进入了死胡同。</p>
-<p>在网上查阅相关资料，发现了下面一段描述：<code>socket.close()</code> 操作并不能立即释放绑定的端口，而是把端口设置为 TIME_WAIT 状态，过段时间(默认240s)才释放(用 <code>netstat -na</code> 可以看到)，如果建立短连接的操作较为频繁，可能会导致系统端口资源耗尽。所以，最终确定问题还是在 Socket 的关闭上，既然找到了问题所在，那么在不修改 FTPClient 代码的条件下，可采用如下解决方案：</p>
-<ul>
-<li>扩大机器可用的端口范围</li>
-<li>开启端口的复用与快速回收</li>
-</ul>
-<p>运维人员按上述方案对操作系统进行设置之后，checkpoint 数据到 FTP 时，未再发生端口被占用问题。</p>
-<h2 id="03-参考资料"><a href="#03-参考资料" class="headerlink" title="03.参考资料"></a>03.参考资料</h2><ul>
-<li><a target="_blank" rel="noopener" href="https://bbs.csdn.net/topics/320024769">请教Address already in use: connect问题</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.cnblogs.com/dasusu/p/10006899.html">记录 FTPClient 超时处理的相关问题</a></li>
+<h2 id="06-Application-Mode-on-k8s-示例"><a href="#06-Application-Mode-on-k8s-示例" class="headerlink" title="06.Application Mode on k8s 示例"></a>06.Application Mode on k8s 示例</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">./bin/flink run-application -p 8 -t kubernetes-application \</span><br><span class="line">-Dkubernetes.cluster-id=&lt;ClusterId&gt; \</span><br><span class="line">-Dtaskmanager.memory.process.size=4096m \</span><br><span class="line">-Dkubernetes.taskmanager.cpu=2 \</span><br><span class="line">-Dtaskmanager.numberOfTaskSlots=4 \</span><br><span class="line">-Dkubernetes.container.image=&lt;CustomImageName&gt; \</span><br><span class="line">local:///opt/flink/usrlib/my-flink-job.jar</span><br></pre></td></tr></table></figure>
+
+<p><strong>注意</strong>：在 Flink 1.11 中，当使用 application mode on k8s 时，只能通过 local 协议来指定应用 jar 包，这意味着必须将应用 jar 包打到 Flink 镜像中。</p>
+<h2 id="07-参考资料"><a href="#07-参考资料" class="headerlink" title="07.参考资料"></a>07.参考资料</h2><ul>
+<li><a target="_blank" rel="noopener" href="https://flink.apache.org/news/2020/07/14/application-mode.html">Application Deployment in Flink: Current State and the new Application Mode</a></li>
+<li><a target="_blank" rel="noopener" href="https://ci.apache.org/projects/flink/flink-docs-release-1.11/ops/deployment/yarn_setup.html#run-an-application-in-application-mode">Run an application in Application Mode</a></li>
+<li><a target="_blank" rel="noopener" href="https://ci.apache.org/projects/flink/flink-docs-release-1.11/ops/deployment/native_kubernetes.html#flink-kubernetes-application">Flink Kubernetes Application</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/90d9f1f24937">Flink on YARN的第三种部署模式：Application Mode</a></li>
+<li><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/160800648">探究 flink1.11 Application 模式</a></li>
 </ul>
 
     </div>
@@ -292,12 +308,12 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/06/29/flink/Flink%20%E4%BD%BF%E7%94%A8%20FTP%20%E4%BD%9C%E4%B8%BA%20Checkpoint%20%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F/" rel="prev" title="Flink 使用 FTP 作为 Checkpoint 文件系统">
-      <i class="fa fa-chevron-left"></i> Flink 使用 FTP 作为 Checkpoint 文件系统
+    <a href="/2020/07/12/flink/Flink%201.11.0%20%E7%BB%B4%E8%A1%A8%20join%20%E6%9D%A1%E4%BB%B6%E4%B8%AD%E5%8C%85%E5%90%AB%20UDF%20%E6%97%B6%E6%89%A7%E8%A1%8C%E5%87%BA%E9%94%99/" rel="prev" title="Flink 1.11.0 维表 join 条件中包含 UDF 时执行出错">
+      <i class="fa fa-chevron-left"></i> Flink 1.11.0 维表 join 条件中包含 UDF 时执行出错
     </a></div>
       <div class="post-nav-item">
-    <a href="/2020/07/12/flink/Flink%201.11.0%20%E7%BB%B4%E8%A1%A8%20join%20%E6%9D%A1%E4%BB%B6%E4%B8%AD%E5%8C%85%E5%90%AB%20UDF%20%E6%97%B6%E6%89%A7%E8%A1%8C%E5%87%BA%E9%94%99/" rel="next" title="Flink 1.11.0 维表 join 条件中包含 UDF 时执行出错">
-      Flink 1.11.0 维表 join 条件中包含 UDF 时执行出错 <i class="fa fa-chevron-right"></i>
+    <a href="/2020/10/27/flink/Flink%201.11.0%20%E8%BF%9E%E6%8E%A5%20postgre%20%E7%9A%84%E9%97%AE%E9%A2%98/" rel="next" title="Flink 1.11.0 连接 postgre 的问题">
+      Flink 1.11.0 连接 postgre 的问题 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -357,7 +373,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#01-%E8%83%8C%E6%99%AF%E8%AF%B4%E6%98%8E"><span class="nav-text">01.背景说明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#02-%E9%97%AE%E9%A2%98%E6%8E%92%E6%9F%A5"><span class="nav-text">02.问题排查</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#03-%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-text">03.参考资料</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#01-%E5%BD%93%E5%89%8D%E7%9A%84%E5%BA%94%E7%94%A8%E9%83%A8%E7%BD%B2%E6%A8%A1%E5%BC%8F"><span class="nav-text">01.当前的应用部署模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#02-%E9%83%A8%E7%BD%B2%E6%A8%A1%E5%BC%8F%E5%AD%98%E5%9C%A8%E7%9A%84%E9%97%AE%E9%A2%98"><span class="nav-text">02.部署模式存在的问题</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#03-Application-Mode-%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86"><span class="nav-text">03.Application Mode 实现原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#04-%E8%BF%9B%E4%B8%80%E6%AD%A5%E5%87%8F%E5%B0%91%E7%BD%91%E7%BB%9C%E8%B5%84%E6%BA%90"><span class="nav-text">04.进一步减少网络资源</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#05-Application-Mode-on-Yarn-%E7%A4%BA%E4%BE%8B"><span class="nav-text">05.Application Mode on Yarn 示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#06-Application-Mode-on-k8s-%E7%A4%BA%E4%BE%8B"><span class="nav-text">06.Application Mode on k8s 示例</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#07-%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-text">07.参考资料</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
