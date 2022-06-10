@@ -343,6 +343,49 @@
       </tags>
   </entry>
   <entry>
+    <title>CentOS 常用配置</title>
+    <url>/2015/06/16/tool/CentOS%20%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
+<span id="more"></span>
+
+<h2 id="01-关闭防火墙"><a href="#01-关闭防火墙" class="headerlink" title="01.关闭防火墙"></a>01.关闭防火墙</h2><p>查看防火墙状态：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl status firewalld.service</span><br></pre></td></tr></table></figure>
+
+<p>关闭防火墙：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl stop firewalld.service</span><br></pre></td></tr></table></figure>
+
+<p>关闭防火墙开机自启：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">systemctl disable firewalld.service</span><br></pre></td></tr></table></figure>
+
+<h2 id="02-配置-DNS-服务器"><a href="#02-配置-DNS-服务器" class="headerlink" title="02.配置 DNS 服务器"></a>02.配置 DNS 服务器</h2><p>配置 <code>/etc/resolv.conf</code>：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">nameserver 114.114.114.114</span><br></pre></td></tr></table></figure>
+
+<h2 id="03-配置国内-yum-源"><a href="#03-配置国内-yum-源" class="headerlink" title="03.配置国内 yum 源"></a>03.配置国内 yum 源</h2><p>进入 <a href="https://developer.aliyun.com/mirror/">阿里巴巴开源镜像站</a>，点击 centos，进入镜像使用的详情页，按照页面的指导进行相应配置。</p>
+<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/aliyun_mirror.png"></p>
+<p>例如，为 CentOS 7 配置阿里云的 yum 源，具体操作如下：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">备份数据</span></span><br><span class="line">mv /etc/yum.repos.d/CentOS-Base.repo /etc/yum.repos.d/CentOS-Base.repo.backup</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">下载配置</span></span><br><span class="line">curl -o /etc/yum.repos.d/CentOS-Base.repo https://mirrors.aliyun.com/repo/Centos-7.repo</span><br><span class="line"><span class="meta prompt_"># </span><span class="language-bash">生成缓存</span></span><br><span class="line">yum makecache</span><br></pre></td></tr></table></figure>
+
+<h2 id="04-配置机器之间的-SSH-免密登录"><a href="#04-配置机器之间的-SSH-免密登录" class="headerlink" title="04.配置机器之间的 SSH 免密登录"></a>04.配置机器之间的 SSH 免密登录</h2><p>生成密钥：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果A需要SSH免密登录到其他机器，那么在A上执行下面的命令</span></span><br><span class="line">ssh-keygen -t rsa</span><br></pre></td></tr></table></figure>
+
+<p>授权：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">如果A需要SSH免密登录B，那么在A上执行下面的命令</span></span><br><span class="line">ssh-copy-id B</span><br></pre></td></tr></table></figure>
+
+<p>测试：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">在A上执行下面的命令</span></span><br><span class="line">ssh B</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如果 ssh-copy-id 命令不存在，则需要执行下面命令安装 openssh-clients：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line"><span class="meta prompt_"># </span><span class="language-bash">注意：涉及免密登录的每台机器都得安装openssh-clients</span></span><br><span class="line">sudo yum install -y openssh-clients</span><br></pre></td></tr></table></figure></blockquote>
+]]></content>
+      <categories>
+        <category>tool</category>
+      </categories>
+      <tags>
+        <tag>centos</tag>
+      </tags>
+  </entry>
+  <entry>
     <title>Git for windows 中文乱码解决办法</title>
     <url>/2016/03/11/tool/Git%20for%20windows%20%E4%B8%AD%E6%96%87%E4%B9%B1%E7%A0%81%E8%A7%A3%E5%86%B3%E5%8A%9E%E6%B3%95/</url>
     <content><![CDATA[<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
@@ -739,6 +782,55 @@
       </categories>
       <tags>
         <tag>ubuntu</tag>
+      </tags>
+  </entry>
+  <entry>
+    <title>pip 常用配置</title>
+    <url>/2015/06/16/tool/pip%20%E5%B8%B8%E7%94%A8%E9%85%8D%E7%BD%AE/</url>
+    <content><![CDATA[<p><img src="https://raw.githubusercontent.com/zhoulii/figure-bed/main/fig/panda-banner-1.png"></p>
+<span id="more"></span>
+
+<h2 id="01-CentOS-7-中-pip-配置国内镜像源"><a href="#01-CentOS-7-中-pip-配置国内镜像源" class="headerlink" title="01.CentOS 7 中 pip 配置国内镜像源"></a>01.CentOS 7 中 pip 配置国内镜像源</h2><p>修改 <code>~/.pip/pip.conf</code>（没有则手动创建），内容如下：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">[global]</span><br><span class="line">index-url=http://pypi.douban.com/simple</span><br><span class="line">trusted-host = pypi.douban.com</span><br></pre></td></tr></table></figure>
+
+<h2 id="02-CentOS-7-中为-python-2-7-5-安装-pip-模块"><a href="#02-CentOS-7-中为-python-2-7-5-安装-pip-模块" class="headerlink" title="02.CentOS 7 中为 python 2.7.5 安装 pip 模块"></a>02.CentOS 7 中为 python 2.7.5 安装 pip 模块</h2><p>安装 setuptools：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">curl https://bootstrap.pypa.io/ez_setup.py | python</span><br></pre></td></tr></table></figure>
+
+<p>pip 安装模块的时候可能会用到 gcc，所以最好把 gcc 装上：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">sudo yum install -y gcc</span><br></pre></td></tr></table></figure>
+
+<p>下载 pip 模块：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">wget https://files.pythonhosted.org/packages/c8/89/ad7f27938e59db1f0f55ce214087460f65048626e2226531ba6cb6da15f0/pip-19.0.1.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p>解压 pip 模块：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">tar -zxvf pip-19.0.1.tar.gz</span><br></pre></td></tr></table></figure>
+
+<p>安装 pip 模块：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">python setup.py install</span><br></pre></td></tr></table></figure>
+
+<p>查看 pip 版本：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip --version</span><br></pre></td></tr></table></figure>
+
+<h2 id="03-CentOS-7-中-pip-安装-matplotlib"><a href="#03-CentOS-7-中-pip-安装-matplotlib" class="headerlink" title="03.CentOS 7 中 pip 安装 matplotlib"></a>03.CentOS 7 中 pip 安装 matplotlib</h2><p>安装命令如下：</p>
+<figure class="highlight shell"><table><tr><td class="code"><pre><span class="line">pip install matplotlib</span><br></pre></td></tr></table></figure>
+
+<p>安装过程中，可能会碰到下面两个问题：</p>
+<ul>
+<li>问题：<code>configure: error: no acceptable C compiler found in $PATH</code></li>
+<li>解决：<code>sudo yum install -y gcc</code></li>
+<li>问题：<code>_posixsubprocess.c:16:20: fatal error: Python.h: No such file or directory</code></li>
+<li>解决：<code>sudo yum -y install python-devel</code></li>
+</ul>
+<h2 id="04-参考资料"><a href="#04-参考资料" class="headerlink" title="04.参考资料"></a>04.参考资料</h2><ul>
+<li><a href="https://www.cnblogs.com/supermanwx/p/10320029.html">python安装pip模块</a></li>
+<li><a href="https://www.runoob.com/w3cnote/python-pip-install-usage.html">菜鸟教程：Python pip 安装与使用</a></li>
+</ul>
+]]></content>
+      <categories>
+        <category>tool</category>
+      </categories>
+      <tags>
+        <tag>pip</tag>
       </tags>
   </entry>
   <entry>
